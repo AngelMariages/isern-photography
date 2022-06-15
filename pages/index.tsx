@@ -26,7 +26,7 @@ const Home: NextPage<Props> = ({ allPosts }) => {
             alt={post.title}
             width={post.imageWidth}
             height={post.imageHeight}
-            layout={'fill'}
+            layout='responsive'
           />
         </div>
       ))}
