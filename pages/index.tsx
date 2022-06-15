@@ -1,13 +1,52 @@
 import type { NextPage } from 'next'
+import Image from 'next/image';
+import { getAllPosts, Post } from '../lib/api';
+import { JustifiedGrid } from '@egjs/react-grid';
 
-const Home: NextPage = () => {
+type Props = {
+  allPosts: Post[]
+}
+
+const Home: NextPage<Props> = ({ allPosts }) => {
   return (
-    <div className='flex flex-column border-red-200 border'>
-      <p className='font-bold text-3xl underline underline-offset-3'>
-        test
-      </p>
-    </div>
+    <JustifiedGrid
+      className='overflow-hidden'
+      gap={5}
+      defaultDirection={'end'}
+      align={'center'}
+      columnRange={[1, 4]}
+      sizeRange={[200, 1000]}
+      isCroppedSize={false}
+      displayedRow={-1}
+    >
+      {allPosts.map((post, id) => (
+        <div
+          key={id}
+          className='relative w-full'
+          style={{
+            height: `${post.imageWidth}`,
+            width: `${post.imageHeight}`,
+          }}
+        >
+          <Image
+            src={post.image}
+            alt={post.title}
+            width={post.imageWidth}
+            height={post.imageHeight} />
+        </div>
+      ))}
+    </JustifiedGrid>
   )
+}
+
+export async function getStaticProps() {
+  const allPosts = getAllPosts();
+
+  return {
+    props: {
+      allPosts,
+    }
+  }
 }
 
 export default Home
