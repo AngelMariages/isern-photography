@@ -20,19 +20,14 @@ const Home: NextPage<Props> = ({ allPosts }) => {
       displayedRow={-1}
     >
       {allPosts.map((post, id) => (
-        <div
-          key={id}
-          className='relative w-full'
-          style={{
-            height: `${post.imageWidth}`,
-            width: `${post.imageHeight}`,
-          }}
-        >
+        <div key={id} className='relative w-full'>
           <Image
             src={post.image}
             alt={post.title}
             width={post.imageWidth}
-            height={post.imageHeight} />
+            height={post.imageHeight}
+            layout={'fill'}
+          />
         </div>
       ))}
     </JustifiedGrid>
