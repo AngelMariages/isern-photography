@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Image from 'next/image';
 import { getAllPosts, Post } from '../lib/api';
-import { JustifiedGrid } from '@egjs/react-grid';
+import BlurImage from '../components/BlurImage';
 
 type Props = {
   allPosts: Post[]
@@ -9,29 +9,35 @@ type Props = {
 
 const Home: NextPage<Props> = ({ allPosts }) => {
   return (
-    <JustifiedGrid
-      className='overflow-hidden'
-      gap={5}
-      defaultDirection={'end'}
-      align={'center'}
-      columnRange={[1, 4]}
-      sizeRange={[200, 1000]}
-      isCroppedSize={false}
-      displayedRow={-1}
+    <div
+      className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-2.5 grid-cols-4 p-0 m-0'
+      style={{
+        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+      }}
     >
       {allPosts.map((post, id) => (
         <div key={id} className='relative w-full'>
-          <Image
-            src={post.image}
-            alt={post.title}
-            width={post.imageWidth}
-            height={post.imageHeight}
-            layout='responsive'
-          />
+          <div className='inline-flex' style={{
+            paddingTop: `${100 / (post.imageWidth / post.imageHeight)}%`
+          }}>
+            <BlurImage
+              post={post}
+              isPriority={id <= 10}
+            />
+            {/* </div> */}
+          </div>
         </div>
       ))}
-    </JustifiedGrid>
-  )
+    </div>
+  );
+}
+
+const shuffle = (a: any[]) => {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
 }
 
 export async function getStaticProps() {
@@ -39,7 +45,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      allPosts,
+      allPosts: shuffle([...allPosts.concat(allPosts).concat(allPosts)])
     }
   }
 }
