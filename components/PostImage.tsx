@@ -1,10 +1,9 @@
-import { NextPage } from 'next';
 import Image from 'next/image';
 import { Post } from '../lib/api';
 
-const PostImage: NextPage<{ post: Post }> = ({ post }) => {
+const PostImage: React.FC<{ post: Post, onClick: () => void }> = ({ post, onClick }) => {
 	return (
-		<div className='absolute inset-0 m-0 w-full bg-gray-200 cursor-pointer'>
+		<div className='absolute inset-0 m-0 w-full bg-gray-200 cursor-pointer' onClick={() => onClick()}>
 			<Image
 				src={post.image}
 				placeholder='blur'

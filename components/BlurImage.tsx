@@ -1,4 +1,3 @@
-import { NextPage } from 'next';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Post } from '../lib/api';
@@ -7,7 +6,7 @@ function cn(...classes: string[]) {
 	return classes.filter(Boolean).join(' ')
 }
 
-const BlurImage: NextPage<{ post: Post, isPriority: boolean }> = ({ post, isPriority }) => {
+const BlurImage: React.FC<{ post: Post, isPriority: boolean }> = ({ post, isPriority }) => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	return (

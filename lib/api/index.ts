@@ -55,7 +55,7 @@ async function generateBase64BlurImg(image: string): Promise<string> {
 	const sharpImg = sharp(imagePath);
 	const metadata = await sharpImg.metadata();
 
-	const placeholderImgWidth = 20;
+	const placeholderImgWidth = 100;
 	const imgAspectRatio = metadata.width! / metadata.height!;
 	const placeholderImgHeight = Math.round(placeholderImgWidth / imgAspectRatio);
 
