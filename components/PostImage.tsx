@@ -7,6 +7,7 @@ const PostImage: NextPage<{ post: Post }> = ({ post }) => {
 		<div className='absolute inset-0 m-0 w-full bg-gray-200 cursor-pointer'>
 			<Image
 				src={post.image}
+				placeholder='blur'
 				blurDataURL={post.blurSrc}
 				alt={post.title}
 				sizes={
