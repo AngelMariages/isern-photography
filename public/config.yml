@@ -16,6 +16,10 @@ collections:
       - { label: "Layout", name: "layout", widget: "hidden", default: "blog" }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Tags", name: "tags", widget: "list" }
-      - { label: "Image", name: "image", widget: "image" }
-      - { label: "Width", name: "imageWidth", widget: "string", value: "{{entry.image.width}}" }
-      - { label: "Height", name: "imageHeight", widget: "string", value: "{{entry.image.height}}" }
+      - label: "Image"
+        name: "image"
+        widget: "object"
+        fields:
+          - { label: "Image", name: "image", widget: "image" }
+          - { label: "Width", name: "imageWidth", widget: "string", value: "{{entry.image.width}}" }
+          - { label: "Height", name: "imageHeight", widget: "string", value: "{{entry.image.height}}" }
