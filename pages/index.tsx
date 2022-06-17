@@ -1,49 +1,51 @@
-import type { NextPage } from 'next'
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import { getAllPosts, Post } from '../lib/api';
-import PostImage from '../components/PostImage';
-import ImageLightbox from '../components/ImageLightbox';
-import { useState } from 'react';
+import Gallery from './gallery';
 
-type Props = {
-  allPosts: Post[]
-}
+const Home = ({ allPosts }: {
+  allPosts: Post[];
+}) => {
+  const [isSticky, setIsSticky] = useState(false);
 
-const Home: NextPage<Props> = ({ allPosts }) => {
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 0);
+    }
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [])
 
   return (
     <>
-      {isLightboxOpen && (
-        <ImageLightbox
-          images={allPosts.map(post => ({ src: post.image.src, preview: post.image.previewDataURL }))}
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-          setIsOpen={setIsLightboxOpen}
-        />
-      )}
-      <div
-        className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-0'
-        style={{
-          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-        }}
-      >
-        {allPosts.map(({ image }, id) => (
-          <div key={id} className='relative w-full'>
-            <div className='inline-flex' style={{
-              paddingTop: `calc(${100 / (image.width / image.height)}% - 10px)`
-            }}>
-              <PostImage
-                onClick={() => {
-                  setIsLightboxOpen(true);
-                  setCurrentIndex(id);
-                }}
-                image={image}
-              />
-            </div>
+      <div className='absolute'>
+        <div className='relative'>
+          <div className={
+            `transition-height duration-500 ease-in-out fixed bg-opacity-50 z-10 flex items-center justify-center w-full top-0 ${isSticky ? 'h-[40px] bg-gray-800' : 'h-[80px]'}`
+          }>
+            <div className='font-medium tracking-wide font mr-10'>HOME</div>
+            <div className='font-medium tracking-wide font mr-10'>RETRATO</div>
+            <div className='font-medium tracking-wide font mr-10'>PRODUCTO</div>
+            <div className='font-medium tracking-wide font mr-10'>LOOK BOOK</div>
+            <div className='font-medium tracking-wide font mr-10'>CONTACTO</div>
           </div>
-        ))}
+        </div>
       </div>
+      <div className='w-full relative h-screen'>
+        <Image
+          src={allPosts[1].image}
+          alt={allPosts[1].title}
+          layout='fill'
+          objectFit='cover'
+          width={'100%'}
+          height={'100%'}
+        />
+      </div>
+      <Gallery allPosts={allPosts} />
     </>
   );
 }
@@ -58,4 +60,4 @@ export async function getStaticProps() {
   }
 }
 
-export default Home
+export default Home;
