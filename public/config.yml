@@ -1,12 +1,12 @@
 backend:
-  name: github # our repository provider
-  repo: AngelMariages/isern-photography # username/repo
-  branch: main # the main branch of our repo
-  base_url: "https://isern-photography.vercel.app/" # our site's base URL
-  auth_endpoint: "api/auth" # used together with base_url for our custom endpoints (more on this later)
-media_folder: "public/images" # the folder we want to upload new images to
-public_folder: "/images" # the folder our images should be fetched from
-collections: # our content types, this is just an example!
+  name: github
+  repo: AngelMariages/isern-photography
+  branch: main
+  base_url: "https://isern-photography.vercel.app/"
+  auth_endpoint: "api/auth"
+media_folder: "public/images"
+public_folder: "/images"
+collections:
   - name: "pages"
     label: "Pages"
     folder: "_posts"
@@ -17,3 +17,5 @@ collections: # our content types, this is just an example!
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Tags", name: "tags", widget: "list" }
       - { label: "Image", name: "image", widget: "image" }
+      - { label: "Width", name: "imageWidth", widget: "string", value: "{{entry.image.width}}" }
+      - { label: "Height", name: "imageHeight", widget: "string", value: "{{entry.image.height}}" }

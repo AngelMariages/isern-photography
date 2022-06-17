@@ -9,5 +9,49 @@
 	<body>
 		<!-- Include the script that builds the page and powers Netlify CMS -->
 		<script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+		<script>
+			async function getNaturalImageSize(url) {
+				return new Promise((resolve) => {
+					const img = new Image();
+					img.src = url;
+					img.onload = () => {
+						resolve({
+							width: img.naturalWidth,
+							height: img.naturalHeight,
+						});
+					};
+				});
+			}
+
+			async function preSaveHandler({ entry }) {
+				const image = entry.get("data").get("image").toJSON();
+				const mediaFiles = entry.get("mediaFiles").toJSON();
+
+				const mediaFilesUrls = mediaFiles.reduce((acc, { url, path }) => {
+					acc[path.replace(/^public(.*)/, "$1")] = url;
+					return acc;
+				}, {});
+
+				const dimensions = await getNaturalImageSize(mediaFilesUrls[image.src]);
+
+				return entry
+					.get("data")
+					.set(
+						"image",
+						entry
+							.get("data")
+							.get("image")
+							.set("width", dimensions.width)
+							.set("height", dimensions.height)
+					);
+			}
+
+			window.addEventListener("load", function () {
+				CMS.registerEventListener({
+					name: "preSave",
+					handler: preSaveHandler,
+				});
+			});
+		</script>
 	</body>
 </html>
