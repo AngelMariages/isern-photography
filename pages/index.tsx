@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { getAllPosts, Post } from '../lib/api';
-import Gallery from './gallery';
+import Gallery from '../containers/gallery';
 
 const Home = ({ allPosts }: {
   allPosts: Post[];
