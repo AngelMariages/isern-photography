@@ -13,21 +13,21 @@ const Home: NextPage<Props> = ({ allPosts }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
-    <div
-      className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-0'
-      style={{
-        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-      }}
-    >
-      <>
-        {isLightboxOpen && (
-          <ImageLightbox
-            images={allPosts.map(post => post.image)}
-            currentIndex={currentIndex}
-            setCurrentIndex={setCurrentIndex}
-            setIsOpen={setIsLightboxOpen}
-          />
-        )}
+    <>
+      {isLightboxOpen && (
+        <ImageLightbox
+          images={allPosts.map(post => ({ src: post.image, preview: post.blurSrc }))}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+          setIsOpen={setIsLightboxOpen}
+        />
+      )}
+      <div
+        className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-0'
+        style={{
+          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+        }}
+      >
         {allPosts.map((post, id) => (
           <div key={id} className='relative w-full'>
             <div className='inline-flex' style={{
@@ -43,8 +43,8 @@ const Home: NextPage<Props> = ({ allPosts }) => {
             </div>
           </div>
         ))}
-      </>
-    </div>
+      </div>
+    </>
   );
 }
 
