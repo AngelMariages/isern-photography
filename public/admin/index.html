@@ -27,12 +27,9 @@
 				const image = entry.get("data").get("image").toJSON();
 				const mediaFiles = entry.get("mediaFiles").toJSON();
 
-				const mediaFilesUrls = mediaFiles.reduce((acc, { url, path }) => {
-					acc[path.replace(/^public(.*)/, "$1")] = url;
-					return acc;
-				}, {});
+				const imgUrl = mediaFiles.find(mf => mf.path.replace(/^public(.*)/, "$1") === image.src);
 
-				const dimensions = await getNaturalImageSize(mediaFilesUrls[image.src]);
+				const dimensions = await getNaturalImageSize(image.src);
 
 				return entry
 					.get("data")
