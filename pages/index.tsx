@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Image from 'next/image';
 import { getAllPosts, Post } from '../lib/api';
 import BlurImage from '../components/BlurImage';
+import PostImage from '../components/PostImage';
 
 type Props = {
   allPosts: Post[]
@@ -20,10 +21,7 @@ const Home: NextPage<Props> = ({ allPosts }) => {
           <div className='inline-flex' style={{
             paddingTop: `calc(${100 / (post.imageWidth / post.imageHeight)}% - 10px)`
           }}>
-            <BlurImage
-              post={post}
-              isPriority={id <= 10}
-            />
+            <PostImage post={post} />
             {/* </div> */}
           </div>
         </div>
@@ -33,7 +31,7 @@ const Home: NextPage<Props> = ({ allPosts }) => {
 }
 
 export async function getStaticProps() {
-  const allPosts = getAllPosts();
+  const allPosts = await getAllPosts();
 
   return {
     props: {
