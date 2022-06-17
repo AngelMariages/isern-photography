@@ -21,5 +21,5 @@ collections:
         widget: "object"
         fields:
           - { label: "Image", name: "src", widget: "image" }
-          - { label: "Width", name: "width", widget: "number", hidden: true, required: false, value: "{{entry.image.width}}" }
-          - { label: "Height", name: "height", widget: "number", hidden: true, required: false, value: "{{entry.image.height}}" }
+          - { label: "Width", name: "width", widget: "hidden", required: false, value: "{{entry.image.width}}" }
+          - { label: "Height", name: "height", widget: "hidden", required: false, value: "{{entry.image.height}}" }
