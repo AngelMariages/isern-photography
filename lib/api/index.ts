@@ -47,8 +47,6 @@ async function getPostBySlug(slug: string) {
 		}
 	});
 
-	console.log('data.image', data.image);
-
 	if (data.image) {
 		const previewDataURL = await generateBase64BlurImg(data.image.src);
 
@@ -89,8 +87,6 @@ export async function getAllPosts(): Promise<Post[]> {
 			await getPostBySlug(slug)
 		)
 	);
-
-	console.log('posts', posts);
 
 	return posts;
 }
