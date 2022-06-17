@@ -35,7 +35,7 @@
 					imageUrl = mediaFile.url;
 				}
 
-				const dimensions = await getNaturalImageSize(`/${imageUrl}`);
+				const dimensions = await getNaturalImageSize(imageUrl);
 
 				return entry
 					.get("data")
