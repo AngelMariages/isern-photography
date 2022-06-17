@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'Rajdhani': ["Rajdhani", ...defaultTheme.fontFamily.sans],
+        sans: ["Rajdhani", ...defaultTheme.fontFamily.sans],
       }
     }
   },

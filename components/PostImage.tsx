@@ -3,7 +3,7 @@ import { Post, PostImage } from '../lib/api';
 
 const PostImage: React.FC<{ image: PostImage, onClick: () => void }> = ({ image, onClick }) => {
 	return (
-		<div className='absolute inset-0 m-0 w-full bg-gray-200 cursor-pointer' onClick={() => onClick()}>
+		<div className='absolute inset-0 mb-0 w-full bg-gray-200 cursor-pointer' onClick={() => onClick()}>
 			<Image
 				src={image.src}
 				placeholder='blur'

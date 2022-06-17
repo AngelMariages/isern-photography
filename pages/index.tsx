@@ -10,7 +10,9 @@ const Home = ({ allPosts }: {
     <>
       <Header />
       <MainImage image={allPosts[1].image} />
-      <Gallery allPosts={allPosts} />
+      <div className='px-2 pt-20'>
+        <Gallery allPosts={allPosts} />
+      </div>
     </>
   );
 }

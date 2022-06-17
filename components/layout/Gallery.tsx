@@ -20,23 +20,25 @@ const Gallery = ({ allPosts }: {
 				/>
 			)}
 			<div
-				className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-0'
+				className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-2'
 				style={{
 					gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
 				}}
 			>
 				{allPosts.map(({ image }, id) => (
-					<div key={id} className='relative w-full'>
+					<div key={id} className='relative w-full mb-2'>
 						<div className='inline-flex' style={{
-							paddingTop: `calc(${100 / (image.width / image.height)}% - 10px)`
+							paddingTop: `calc(${100 / (image.width / image.height)}% - 2px)`
 						}}>
-							<PostImage
-								onClick={() => {
-									setIsLightboxOpen(true);
-									setCurrentIndex(id);
-								}}
-								image={image}
-							/>
+							<div>
+								<PostImage
+									onClick={() => {
+										setIsLightboxOpen(true);
+										setCurrentIndex(id);
+									}}
+									image={image}
+								/>
+							</div>
 						</div>
 					</div>
 				))}
