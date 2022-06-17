@@ -29,7 +29,13 @@
 
 				const mediaFile = mediaFiles.find(mf => mf.path.replace(/^public(.*)/, "$1") === image.src);
 
-				const dimensions = await getNaturalImageSize(`/${mediaFile.path}`);
+				let imageUrl = mediaFile.path;
+
+				if (mediaFile.draft) {
+					imageUrl = mediaFile.url;
+				}
+
+				const dimensions = await getNaturalImageSize(`/${imageUrl}`);
 
 				return entry
 					.get("data")
