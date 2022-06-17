@@ -1,6 +1,6 @@
-import { Post } from '../lib/api';
-import PostImage from '../components/PostImage';
-import ImageLightbox from '../components/ImageLightbox';
+import { Post } from '../../lib/api';
+import PostImage from '../PostImage';
+import ImageLightbox from '../ImageLightbox';
 import { useState } from 'react';
 
 const Gallery = ({ allPosts }: {
