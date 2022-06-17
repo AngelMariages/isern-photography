@@ -1,14 +1,14 @@
 import Image from 'next/image';
-import { Post } from '../lib/api';
+import { Post, PostImage } from '../lib/api';
 
-const PostImage: React.FC<{ post: Post, onClick: () => void }> = ({ post, onClick }) => {
+const PostImage: React.FC<{ image: PostImage, onClick: () => void }> = ({ image, onClick }) => {
 	return (
 		<div className='absolute inset-0 m-0 w-full bg-gray-200 cursor-pointer' onClick={() => onClick()}>
 			<Image
-				src={post.image}
+				src={image.src}
 				placeholder='blur'
-				blurDataURL={post.blurSrc}
-				alt={post.title}
+				blurDataURL={image.previewDataURL}
+				alt=''
 				sizes={
 					'(max-width: 640px) 100vw' +
 					',(max-width: 768px) 50vw' +

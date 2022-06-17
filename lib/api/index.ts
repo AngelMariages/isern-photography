@@ -3,49 +3,62 @@ import { join } from 'path';
 import sharp from 'sharp';
 import matter from 'gray-matter';
 
-const POST_FIELDS = ['title', 'slug', 'tags', 'image', 'imageWidth', 'imageHeight'];
+// const POST_FIELDS = ['title', 'slug', 'tags', 'image'];
 
 const postsDirectory = join(process.cwd(), '_posts');
+
+export type PostImage = {
+	src: string;
+	width: number;
+	height: number;
+	previewDataURL: string;
+}
 
 export type Post = {
 	title: string;
 	slug: string;
 	tags: string[];
-	image: string;
-	imageWidth: number;
-	imageHeight: number;
-	blurSrc: string;
+	image: PostImage;
 }
+
+const POST_FIELDS = ['title', 'slug', 'tags', 'image'];
+
 
 function getPostSlugs(): string[] {
 	return readdirSync(postsDirectory);
 }
 
 async function getPostBySlug(slug: string) {
-	const realSlug = slug.replace(/\.md$/, '')
-	const fullPath = join(postsDirectory, `${realSlug}.md`)
-	const fileContents = readFileSync(fullPath, 'utf8')
-	const { data, content } = matter(fileContents)
+	const realSlug = slug.replace(/\.md$/, '');
+	const fullPath = join(postsDirectory, `${realSlug}.md`);
+	const fileContents = readFileSync(fullPath, 'utf8');
+	const { data, content } = matter(fileContents);
 
 	const items = {} as Post;
 
-	await Promise.all(
-		POST_FIELDS.map(async (field) => {
-			if (field === 'slug') {
-				items[field] = realSlug
-			}
+	POST_FIELDS.map(async (field) => {
+		if (field === 'slug') {
+			items[field] = realSlug
+		}
 
-			if (field === 'image') {
-				items[field] = data[field]
-				items.blurSrc = await generateBase64BlurImg(data[field]);
-			}
+		if (data[field] !== undefined) {
+			// @ts-ignore
+			items[field] = data[field]
+		}
+	});
 
-			if (data[field] !== undefined) {
-				// @ts-ignore
-				items[field] = data[field]
-			}
-		})
-	);
+	console.log('data.image', data.image);
+
+	if (data.image) {
+		const previewDataURL = await generateBase64BlurImg(data.image.src);
+
+		items.image = {
+			src: data.image.src,
+			width: parseInt(data.image.width, 10),
+			height: parseInt(data.image.height, 10),
+			previewDataURL
+		};
+	}
 
 	return items
 }
@@ -76,6 +89,8 @@ export async function getAllPosts(): Promise<Post[]> {
 			await getPostBySlug(slug)
 		)
 	);
+
+	console.log('posts', posts);
 
 	return posts;
 }

@@ -2,7 +2,8 @@
 layout: blog
 title: Girl in land sunset
 tags: []
-image: /images/test-7.jpg
-imageWidth: 2250
-imageHeight: 3000
+image:
+  src: /images/test-7.jpg
+  width: 2250
+  height: 3000
 ---

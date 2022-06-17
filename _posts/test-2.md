@@ -6,7 +6,8 @@ tags:
   - land
   - sunset
   - field
-image: /images/test-2.jpg
-imageWidth: 2250
-imageHeight: 3000
+image:
+  src: /images/test-2.jpg
+  width: 2250
+  height: 3000
 ---

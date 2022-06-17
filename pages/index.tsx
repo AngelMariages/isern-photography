@@ -16,7 +16,7 @@ const Home: NextPage<Props> = ({ allPosts }) => {
     <>
       {isLightboxOpen && (
         <ImageLightbox
-          images={allPosts.map(post => ({ src: post.image, preview: post.blurSrc }))}
+          images={allPosts.map(post => ({ src: post.image.src, preview: post.image.previewDataURL }))}
           currentIndex={currentIndex}
           setCurrentIndex={setCurrentIndex}
           setIsOpen={setIsLightboxOpen}
@@ -28,17 +28,17 @@ const Home: NextPage<Props> = ({ allPosts }) => {
           gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
         }}
       >
-        {allPosts.map((post, id) => (
+        {allPosts.map(({ image }, id) => (
           <div key={id} className='relative w-full'>
             <div className='inline-flex' style={{
-              paddingTop: `calc(${100 / (post.imageWidth / post.imageHeight)}% - 10px)`
+              paddingTop: `calc(${100 / (image.width / image.height)}% - 10px)`
             }}>
               <PostImage
                 onClick={() => {
                   setIsLightboxOpen(true);
                   setCurrentIndex(id);
                 }}
-                post={post}
+                image={image}
               />
             </div>
           </div>
