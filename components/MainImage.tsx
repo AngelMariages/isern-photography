@@ -12,6 +12,7 @@ const MainImage = ({ image }: {
 				alt='Main image'
 				priority
 				loading='eager'
+				placeholder='blur'
 				blurDataURL={image.previewDataURL}
 				layout='fill'
 				objectFit='cover'
