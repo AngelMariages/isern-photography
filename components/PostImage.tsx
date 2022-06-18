@@ -17,7 +17,7 @@ const PostImage: React.FC<{ image: PostImage, onClick: () => void }> = ({ image,
 				}
 				layout='fill'
 				objectFit='fill'
-				loading='eager'
+				loading='lazy'
 				className='duration-700 ease-in-out hover:scale-110'
 			/>
 		</div>

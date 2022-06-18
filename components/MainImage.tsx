@@ -10,6 +10,8 @@ const MainImage = ({ image }: {
 			<Image
 				src={image.src}
 				alt='Main image'
+				priority
+				loading='eager'
 				blurDataURL={image.previewDataURL}
 				layout='fill'
 				objectFit='cover'
