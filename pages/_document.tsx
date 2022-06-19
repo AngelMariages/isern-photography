@@ -6,7 +6,7 @@ class MyDocument extends Document {
 			<Html>
 				<Head>
 					<link
-						href="https://fonts.googleapis.com/css2?family=Rajdhani&display=optional"
+						href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap"
 						rel="stylesheet"
 					/>
 				</Head>
