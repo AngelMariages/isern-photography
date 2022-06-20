@@ -19,7 +19,7 @@ const auth = async (req: NextApiRequest, res: NextApiResponse): Promise<void> =>
 	}
 
 	// simple-oauth will use our config files to generate a client we can use to request access
-	const client = new AuthorizationCode(config());
+	const client = new AuthorizationCode(config);
 
 	// we then make a build the request to our provider
 	const authorizationUri = client.authorizeURL({

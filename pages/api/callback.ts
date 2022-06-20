@@ -9,25 +9,38 @@ const callback = async (req: NextApiRequest, res: NextApiResponse): Promise<void
 	const code = urlParams.get("code");
 	const provider = urlParams.get("provider");
 
+	// Only supported provider is Github
 	if (!provider || provider !== 'github') {
 		return res.status(400).json({
 			error: "Missing provider"
 		});
 	}
 
+	if (!code) {
+		return res.status(400).json({
+			error: "Missing code"
+		});
+	}
+
 	// we recreate the client we used to make the request
-	const client = new AuthorizationCode(config(provider));
+	const client = new AuthorizationCode(config);
 
 	// create our token object
-	const tokenParams = {
+	const tokenParams: AuthorizationTokenConfig = {
 		code,
 		redirect_uri: `https://${host}/api/callback?provider=${provider}`
-	} as AuthorizationTokenConfig;
+	};
 
 	try {
 		// try to create an access token from the client
 		const accessToken = await client.getToken(tokenParams);
-		const token = accessToken.token["access_token"];
+		const token: string = accessToken.token.access_token;
+
+		if (!token) {
+			return res.status(400).json({
+				error: "Missing token"
+			});
+		}
 
 		const responseBody = renderBody("success", {
 			token,
@@ -36,15 +49,15 @@ const callback = async (req: NextApiRequest, res: NextApiResponse): Promise<void
 
 		res.statusCode = 200;
 		res.end(responseBody);
-	} catch (e) {
-		res.statusCode = 200;
-		res.end('error');
+	} catch (error) {
+		res.statusCode = 500;
+		res.end(JSON.stringify({ error }));
 	}
 };
 
 // This renders a simple page with javascript that allows the pop-up page
 // to communicate with its opener
-const renderBody = (status: string, content: { token: string, provider: string}): string => {
+const renderBody = (status: string, content: { token: string | undefined, provider: string }): string => {
 	return `
     <script>
       const receiveMessage = (message) => {
