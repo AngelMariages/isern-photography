@@ -1,7 +1,10 @@
 import Image from 'next/image';
+import { useState } from 'react';
 import { Post, PostImage } from '../lib/api';
 
 const PostImage: React.FC<{ image: PostImage, onClick: () => void }> = ({ image, onClick }) => {
+	const [imgPreloaded, setImagPreloaded] = useState(false);
+
 	return (
 		<div className='absolute inset-0 mb-0 w-full bg-gray-200 cursor-pointer' onClick={() => onClick()}>
 			<Image
@@ -18,7 +21,13 @@ const PostImage: React.FC<{ image: PostImage, onClick: () => void }> = ({ image,
 				layout='fill'
 				objectFit='fill'
 				loading='lazy'
-				className='duration-700 ease-in-out hover:scale-110'
+				onMouseEnter={() => {
+					if (!imgPreloaded) {
+						new global.Image().src = image.src;
+						setImagPreloaded(true);
+					}
+				}}
+				className='bg-cover bg-center bg-no-repeat duration-700 ease-in-out hover:scale-110'
 			/>
 		</div>
 	);
