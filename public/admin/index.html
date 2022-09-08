@@ -23,7 +23,8 @@
 				});
 			}
 
-			async function preSaveHandler({ entry }) {
+			async function preSaveHandler(data) {
+				const { entry } = data;
 				const image = entry.get("data").get("image").toJSON();
 				const mediaFiles = entry.get("mediaFiles").toJSON();
 
