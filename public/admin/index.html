@@ -23,9 +23,14 @@
 				});
 			}
 
-			async function preSaveHandler(data) {
-				const { entry } = data;
-				const image = entry.get("data").get("image").toJSON();
+			async function preSaveHandler({ entry }) {
+				const rawImage = entry.get("data").get("image");
+
+				if (!rawImage) {
+					return entry;
+				}
+
+				const image = rawImage.toJSON();
 				const mediaFiles = entry.get("mediaFiles").toJSON();
 
 				const mediaFile = mediaFiles.find(
