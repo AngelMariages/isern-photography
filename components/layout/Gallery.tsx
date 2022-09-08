@@ -1,19 +1,20 @@
 import { Post } from '../../lib/api';
 import PostImage from '../PostImage';
 import ImageLightbox from '../ImageLightbox';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const Gallery = ({ allPosts }: {
 	allPosts: Post[]
 }) => {
 	const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const images = useMemo(() => allPosts.map(post => ({ src: post.image.src, preview: post.image.previewDataURL })), [allPosts])
 
 	return (
 		<>
 			{isLightboxOpen && (
 				<ImageLightbox
-					images={allPosts.map(post => ({ src: post.image.src, preview: post.image.previewDataURL }))}
+					images={images}
 					currentIndex={currentIndex}
 					setCurrentIndex={setCurrentIndex}
 					setIsOpen={setIsLightboxOpen}

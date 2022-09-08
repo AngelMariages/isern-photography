@@ -1,7 +1,11 @@
 import { getAllPosts, Post } from '../lib/api';
-import Gallery from '../components/layout/Gallery';
+import dynamic from 'next/dynamic';
 import Header from '../components/Header';
 import MainImage from '../components/MainImage';
+
+const Gallery = dynamic(() => import('../components/layout/Gallery'), {
+  ssr: false,
+});
 
 const Home = ({ allPosts }: {
   allPosts: Post[];

@@ -22,10 +22,10 @@ const PostImage: React.FC<{ image: PostImage, onClick: () => void }> = ({ image,
 				objectFit='fill'
 				loading='lazy'
 				onMouseEnter={() => {
-					if (!imgPreloaded) {
-						new global.Image().src = image.src;
-						setImagPreloaded(true);
-					}
+					// if (!imgPreloaded) {
+					// 	new global.Image().src = image.src;
+					// 	setImagPreloaded(true);
+					// }
 				}}
 				className='bg-cover bg-center bg-no-repeat duration-700 ease-in-out hover:scale-110'
 			/>

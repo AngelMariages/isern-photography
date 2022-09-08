@@ -7,17 +7,25 @@ type Image = {
 }
 
 const ImageLightbox: React.FC<{ images: Image[]; currentIndex: number; setCurrentIndex: Function, setIsOpen: Function }> = ({ images, currentIndex, setCurrentIndex, setIsOpen }) => {
+	const currentImage = images[currentIndex];
+	const prevImage = images[currentIndex - 1];
+	const nextImage = images[currentIndex + 1];
+
 	return (
 		<Lightbox
-			mainSrc={images[currentIndex].src}
-			mainSrcThumbnail={images[currentIndex].preview}
-			nextSrc={images[(currentIndex + 1) % images.length].src}
-			nextSrcThumbnail={images[(currentIndex + 1) % images.length].preview}
-			prevSrc={images[(currentIndex + images.length - 1) % images.length].src}
-			prevSrcThumbnail={images[(currentIndex + images.length - 1) % images.length].preview}
+			mainSrc={currentImage.src}
+			mainSrcThumbnail={currentImage.preview}
+			nextSrc={nextImage.src}
+			nextSrcThumbnail={nextImage.preview}
+			prevSrc={prevImage.src}
+			prevSrcThumbnail={prevImage.preview}
 			onCloseRequest={() => setIsOpen(false)}
-			onMovePrevRequest={() => setCurrentIndex((currentIndex + images.length - 1) % images.length)}
-			onMoveNextRequest={() => setCurrentIndex((currentIndex + 1) % images.length)}
+			onMovePrevRequest={() => setCurrentIndex(images.indexOf(prevImage))}
+			onMoveNextRequest={() => setCurrentIndex(images.indexOf(nextImage))}
+			onImageLoad={() => {
+				// For React 18
+				window.dispatchEvent(new Event('resize'));
+			}}
 		/>
 	);
 };
