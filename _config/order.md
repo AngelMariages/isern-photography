@@ -11,6 +11,9 @@ data:
     - collectionName: Girl in land sunset
 author: ""
 slug: collectionOrder
+collectionOrder:
+  - collectionName: Girl in land sunset
+  - collectionName: test
 newRecord: false
 status: ""
 mediaFiles:
