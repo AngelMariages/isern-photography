@@ -7,9 +7,9 @@ type Image = {
 }
 
 const ImageLightbox: React.FC<{ images: Image[]; currentIndex: number; setCurrentIndex: Function, setIsOpen: Function }> = ({ images, currentIndex, setCurrentIndex, setIsOpen }) => {
-	const currentImage = images[currentIndex];
-	const prevImage = images[currentIndex - 1];
-	const nextImage = images[currentIndex + 1];
+	const currentImage = images[(currentIndex + images.length) % images.length];
+	const prevImage = images[(currentIndex - 1 + images.length) % images.length];
+	const nextImage = images[(currentIndex + 1 + images.length) % images.length];
 
 	return (
 		<Lightbox
