@@ -14,7 +14,7 @@ const Home = ({ allPosts }: {
     <>
       <Header />
       <MainImage image={allPosts[1].image} />
-      <div className='px-2 pt-20'>
+      <div className='px-2 pt-20 bg-[#2b2b2b]'>
         <Gallery allPosts={allPosts} />
       </div>
     </>

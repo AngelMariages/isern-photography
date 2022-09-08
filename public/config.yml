@@ -7,8 +7,26 @@ backend:
 media_folder: "public/images"
 public_folder: "/images"
 collections:
-  - name: "pages"
-    label: "Pages"
+- name: settings
+     label: Settings
+     files:
+      - name: collectionOrder
+        label: Collection Order
+        file: _config/order.md
+        fields:
+          - label: Collection
+            name: images
+            widget: list
+            fields:
+              - label: Collection Name
+                name: collectionName
+                widget: relation
+                collection: collections
+                searchFields: [title]
+                valueField: title
+
+  - name: "images"
+    label: "Imatges"
     folder: "_posts"
     create: true
     slug: "{{title}}"
