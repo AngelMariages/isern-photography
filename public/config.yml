@@ -22,8 +22,8 @@ collections:
               name: collectionName
               widget: relation
               collection: images
-              searchFields: [title]
-              valueField: title
+              searchFields: ["title", "image.src]
+              valueField: "image.src"
 
   - name: "images"
     label: "Image"

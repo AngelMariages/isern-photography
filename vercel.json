@@ -1,5 +1,7 @@
 {
 	"functions": {
-		"excludeFiles": "public/**/*"
+		"api/*": {
+			"excludeFiles": "public/**/*"
+		}
 	}
 }
