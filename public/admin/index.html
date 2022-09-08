@@ -27,7 +27,7 @@
 				const rawImage = entry.get("data").get("image");
 
 				if (!rawImage) {
-					return entry;
+					return entry.get('data');
 				}
 
 				const image = rawImage.toJSON();
