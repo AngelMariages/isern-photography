@@ -15,18 +15,18 @@ collections:
       file: _config/order.md
       fields:
         - label: Collection
-          name: images
+          name: collectionOrder
           widget: list
           fields:
             - label: Collection Name
               name: collectionName
               widget: relation
-              collection: collections
+              collection: images
               searchFields: [title]
               valueField: title
 
   - name: "images"
-    label: "Imatges"
+    label: "Image"
     folder: "_posts"
     create: true
     slug: "{{title}}"
