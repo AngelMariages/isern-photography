@@ -7,7 +7,6 @@
 		<title>Content Manager</title>
 	</head>
 	<body>
-		<!-- Include the script that builds the page and powers Netlify CMS -->
 		<script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
 		<script>
 			async function getNaturalImageSize(url) {
@@ -27,7 +26,7 @@
 				const rawImage = entry.get("data").get("image");
 
 				if (!rawImage) {
-					return entry.get('data');
+					return entry.get("data");
 				}
 
 				const image = rawImage.toJSON();
@@ -57,11 +56,49 @@
 					);
 			}
 
+			const OrderPreview = createClass({
+				render: function () {
+					const entry = this.props.entry;
+					const data = entry.get("data").toJS();
+					const imageOrder = data.imageOrder;
+
+					return h(
+						"div",
+						{},
+						h(
+							"div",
+							{
+								style: {
+									alignItems: "center",
+									display: "flex",
+									flexDirection: "column",
+								},
+							},
+							imageOrder.map(({ imageName }, index) => {
+								const url = this.props.getAsset(imageName);
+
+								return h("div", {}, [
+									h("p", {}, imageName),
+									h("img", {
+										src: url,
+										key: index,
+										style: {
+											width: "70vh",
+										},
+									}),
+								]);
+							})
+						)
+					);
+				},
+			});
+
 			window.addEventListener("load", function () {
 				CMS.registerEventListener({
 					name: "preSave",
 					handler: preSaveHandler,
 				});
+				CMS.registerPreviewTemplate("imageOrder", OrderPreview);
 			});
 		</script>
 	</body>

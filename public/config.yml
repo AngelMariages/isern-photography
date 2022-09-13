@@ -1,5 +1,6 @@
+local_backend: true
 backend:
-  name: github
+  name: git-gateway
   repo: AngelMariages/isern-photography
   branch: main
   base_url: "https://isern-photography.vercel.app/"
@@ -10,20 +11,20 @@ collections:
   - name: settings
     label: Settings
     files:
-    - name: collectionOrder
+    - name: imageOrder
       label: Collection Order
       file: _config/order.md
       fields:
-        - label: Collection
-          name: collectionOrder
+        - label: Order
+          name: imageOrder
           widget: list
           fields:
-            - label: Collection Name
-              name: collectionName
+            - label: Image Name
+              name: imageName
               widget: relation
               collection: images
-              searchFields: ["title", "image.src"]
-              valueField: "image.src"
+              search_fields: ["title", "image.src"]
+              value_field: "image.src"
 
   - name: "images"
     label: "Image"
