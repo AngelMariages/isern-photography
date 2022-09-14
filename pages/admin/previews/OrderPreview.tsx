@@ -10,6 +10,10 @@ const PreviewContainer = styled('div')`
 `;
 
 const OrderPreview = ({ entry, getAsset }: PreviewTemplateComponentProps) => {
+	if (typeof window === 'undefined') {
+		return null;
+	}
+
 	const data = entry.get("data").toJS();
 	const imageOrder = data.imageOrder;
 
