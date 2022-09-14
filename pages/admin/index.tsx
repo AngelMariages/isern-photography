@@ -1,4 +1,6 @@
+import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
+import { getAllPosts, Post } from '../../lib/api';
 import OrderPreview from './previews/OrderPreview';
 type PreviewTemplateComponentProps = import('netlify-cms-core').PreviewTemplateComponentProps;
 
@@ -58,20 +60,37 @@ async function preSaveHandler({ entry }: PreSaveProps) {
 		);
 }
 
-const AdminPage = () => {
+const AdminPage = ({ allPosts }: { allPosts: Post[]}) => {
 	useEffect(() => {
-		(async () => {
-			const CMS = (await import('netlify-cms-app')).default;
-			CMS.init();
-			CMS.registerEventListener({
-				name: "preSave",
-				handler: preSaveHandler,
-			});
-			CMS.registerPreviewTemplate("imageOrder", OrderPreview);
-		})();
+		if (typeof window !== 'undefined') {
+			(async () => {
+				const CMS = (await import('netlify-cms-app')).default;
+				CMS.init();
+				CMS.registerEventListener({
+					name: "preSave",
+					handler: preSaveHandler,
+				});
+				CMS.registerPreviewTemplate("postsOrder", (props) => {
+					return <OrderPreview {...props} allPosts={allPosts} />;
+				});
+				CMS.registerPreviewStyle("/admin/main.css");
+			})();
+		}
 	}, []);
 
 	return <div></div>;
 };
+
+
+export async function getStaticProps() {
+	const allPosts = await getAllPosts();
+
+	return {
+		props: {
+			allPosts
+		}
+	}
+}
+
 
 export default AdminPage;

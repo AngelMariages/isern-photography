@@ -28,7 +28,7 @@ function getPostSlugs(): string[] {
 	return readdirSync(postsDirectory);
 }
 
-async function getPostBySlug(slug: string) {
+export async function getPostBySlug(slug: string) {
 	const realSlug = slug.replace(/\.md$/, '');
 	const fullPath = join(postsDirectory, `${realSlug}.md`);
 	const fileContents = readFileSync(fullPath, 'utf8');
