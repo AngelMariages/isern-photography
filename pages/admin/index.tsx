@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 import { getAllPosts, Post } from '../../lib/api';
 import OrderPreview from './previews/OrderPreview';
