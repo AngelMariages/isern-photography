@@ -1,7 +1,7 @@
 ---
-imageOrder:
-  - imageName: /images/test-7.jpg
-  - imageName: /images/test-1.jpg
-  - imageName: /images/test-3.jpg
-  - imageName: /images/test-4.jpg
+postOrderList:
+  - postSlug: girl-in-land-sunset-1
+  - postSlug: test-3
+  - postSlug: girl-in-land-sunset-2
+  - postSlug: test-test
 ---

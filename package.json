@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && npm run build:css",
+    "build:css": "tailwind build -i styles/globals.css -o public/admin/main.css",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "netlify-cms-app": "^2.15.72",
     "next": "^12.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

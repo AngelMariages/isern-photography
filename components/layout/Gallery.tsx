@@ -3,8 +3,9 @@ import PostImage from '../PostImage';
 import ImageLightbox from '../ImageLightbox';
 import { useMemo, useState } from 'react';
 
-const Gallery = ({ allPosts }: {
-	allPosts: Post[]
+const Gallery = ({ allPosts, withGallery = true }: {
+	allPosts: Post[],
+	withGallery?: boolean,
 }) => {
 	const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState(0);
@@ -12,7 +13,7 @@ const Gallery = ({ allPosts }: {
 
 	return (
 		<>
-			{isLightboxOpen && (
+			{withGallery && isLightboxOpen && (
 				<ImageLightbox
 					images={images}
 					currentIndex={currentIndex}
@@ -20,12 +21,7 @@ const Gallery = ({ allPosts }: {
 					setIsOpen={setIsLightboxOpen}
 				/>
 			)}
-			<div
-				className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-2'
-				style={{
-					gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-				}}
-			>
+			<div className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-2'>
 				{allPosts.map(({ image }, id) => (
 					<div key={id} className='relative w-full mb-2'>
 						<div className='inline-flex' style={{

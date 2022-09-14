@@ -10,20 +10,20 @@ collections:
   - name: settings
     label: Settings
     files:
-    - name: imageOrder
+    - name: postsOrder
       label: Collection Order
       file: _config/order.md
       fields:
         - label: Order
-          name: imageOrder
           widget: list
+          name: postOrderList
           fields:
             - label: Image Name
-              name: imageName
+              name: postSlug
               widget: relation
               collection: images
-              search_fields: ["title", "image.src"]
-              value_field: "image.src"
+              search_fields: ["{{slug}}"]
+              value_field: "{{slug}}"
 
   - name: "images"
     label: "Image"

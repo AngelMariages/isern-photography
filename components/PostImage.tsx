@@ -6,7 +6,7 @@ const PostImage: React.FC<{ image: PostImage, onClick: () => void }> = ({ image,
 		<div className='absolute inset-0 mb-0 w-full bg-gray-200 cursor-pointer' onClick={() => onClick()}>
 			<Image
 				src={image.src}
-				placeholder='blur'
+				placeholder={image.previewDataURL ? 'blur' : undefined}
 				blurDataURL={image.previewDataURL}
 				alt=''
 				sizes={
