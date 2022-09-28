@@ -28,7 +28,7 @@ const Gallery = ({ allPosts, withGallery = true }: {
 				1100: 3,
 				700: 2,
 				500: 1
-			}} className="flex w-auto ml-[-20px]">
+			}} className="flex w-auto">
 				{allPosts.map(({ image }, id) => (
 					<PostImage
 						key={id}

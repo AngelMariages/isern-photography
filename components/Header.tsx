@@ -1,26 +1,42 @@
-const HeaderItem = ({ children }: {
-	children: React.ReactNode
-}) => (
-	<div className='text-zinc-200 font-medium tracking-wide font mr-10'>{children}</div>
-);
+import Link from 'next/link';
+import NavLink from './NavLink';
 
-const Header: React.FC<{ homeUrl: string }> = ({ homeUrl }) => {
+const HeaderItem: React.FC<{ title: string, href: string }> = ({
+	title,
+	href
+}) => {
+	return (
+		<NavLink
+			href={href}
+			title={title}
+			className='block cursor-pointer text-zinc-200 font-medium tracking-wide font mr-10'
+			activeClassName='text-[#a5a5a5]'
+		/>
+	);
+};
+
+const Header: React.FC<{ variant: 'light' | 'dark' }> = ({ variant }) => {
 	return (
 		<div className='absolute'>
 			<div className='relative'>
-				<a href={homeUrl} className='cursor-pointer block ml-[60px] pt-8 z-20 fixed' rel='home' title='Isern photography'>
-					<div className='text-white font-medium text-4xl'>Isern</div>
-					<div className='text-white uppercase font-normal text-xxs'>photography</div>
-				</a>
+				<Link href="/" passHref rel='home' title='Isern photography'>
+					<a className='cursor-pointer block ml-[60px] pt-8 z-20 fixed'>
+						<div className='text-white font-medium text-4xl'>Isern</div>
+						<div className='text-white uppercase font-normal text-xxs'>photography</div>
+					</a>
+				</Link>
 				<div className={
-					' pointer-events-none transition-opacity duration-500 ease-in-out bg-opacity-50 z-10 flex items-center justify-center w-screen top-0 h-[120px]' +
-					' bg-gradient-to-b from-[#171717] to-transparent'
+					'transition-opacity duration-500 ease-in-out bg-opacity-50 z-10 flex items-center justify-center w-screen top-0 h-[120px]' +
+					` ${variant === 'dark' ?
+						'bg-gradient-to-b from-[#171717] to-transparent' :
+						'bg-gradient-to-b from-[#171717] bg-[#323232]'
+					}`
 				}>
-					<HeaderItem>HOME</HeaderItem>
-					<HeaderItem>RETRATO</HeaderItem>
-					<HeaderItem>PRODUCTO</HeaderItem>
-					<HeaderItem>LOOK BOOK</HeaderItem>
-					<HeaderItem>CONTACTO</HeaderItem>
+					<HeaderItem href="/" title="HOME" />
+					<HeaderItem href='/section/retrato' title="RETRATO" />
+					<HeaderItem href='/section/producto' title="PRODUCTO" />
+					<HeaderItem href='/section/lookBook' title="LOOK BOOK" />
+					<HeaderItem href='/contacto' title="CONTACTO" />
 				</div>
 			</div>
 		</div>
