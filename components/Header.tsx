@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 const HeaderItem = ({ children }: {
 	children: React.ReactNode
 }) => (
@@ -7,20 +5,6 @@ const HeaderItem = ({ children }: {
 );
 
 const Header: React.FC<{ homeUrl: string }> = ({ homeUrl }) => {
-	const [isSticky, setIsSticky] = useState(false);
-
-	useEffect(() => {
-		const handleScroll = () => {
-			setIsSticky(window.scrollY > 80);
-		}
-
-		window.addEventListener('scroll', handleScroll);
-
-		return () => {
-			window.removeEventListener('scroll', handleScroll);
-		};
-	}, [])
-
 	return (
 		<div className='absolute'>
 			<div className='relative'>
@@ -29,7 +13,6 @@ const Header: React.FC<{ homeUrl: string }> = ({ homeUrl }) => {
 					<div className='text-white uppercase font-normal text-xxs'>photography</div>
 				</a>
 				<div className={
-					`${isSticky ? 'opacity-0' : 'opacity-1'}` +
 					' pointer-events-none transition-opacity duration-500 ease-in-out bg-opacity-50 z-10 flex items-center justify-center w-screen top-0 h-[120px]' +
 					' bg-gradient-to-b from-[#171717] to-transparent'
 				}>
