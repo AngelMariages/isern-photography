@@ -10,7 +10,7 @@ const Gallery = ({ allPosts, withGallery = true }: {
 }) => {
 	const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState(0);
-	const images = useMemo(() => allPosts.map(post => ({ src: post.image.src, preview: post.image.previewDataURL })), [allPosts])
+	const images = useMemo(() => allPosts.map(post => ({ src: post.image.src, preview: post.image.blurDataURL })), [allPosts])
 
 	return (
 		<>
