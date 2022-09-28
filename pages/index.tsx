@@ -4,6 +4,7 @@ import MainImage from '../components/MainImage';
 import Gallery from '../components/layout/Gallery';
 import ScrollDownArrow from '../components/ScrollDownArrow';
 import { useRef } from 'react';
+import Head from 'next/head';
 
 const Home = ({ mainPost, allPosts }: {
   mainPost: Post;
@@ -13,6 +14,9 @@ const Home = ({ mainPost, allPosts }: {
 
   return (
     <div className='bg-[#2b2b2b]'>
+      <Head>
+        <title>Jordi Isern Photography</title>
+      </Head>
       <Header variant='dark' />
       <MainImage image={mainPost.image} />
       <ScrollDownArrow scrollToRef={galleryContainerRef} />
