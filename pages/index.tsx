@@ -13,7 +13,7 @@ const Home = ({ mainPost, allPosts }: {
 
   return (
     <div className='bg-[#2b2b2b]'>
-      <Header />
+      <Header homeUrl='https://test.isern-photography.com/' />
       <MainImage image={mainPost.image} />
       <ScrollDownArrow scrollToRef={galleryContainerRef} />
       <div ref={galleryContainerRef} className='mx-2 pt-20'>

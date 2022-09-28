@@ -8,6 +8,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        'xxs': ['0.68rem', {
+          letterSpacing: '.1rem',
+          lineHeight: '1.7rem',
+        }],
+      },
       fontFamily: {
         sans: ["Rajdhani", ...defaultTheme.fontFamily.sans],
       },

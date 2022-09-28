@@ -4,9 +4,9 @@ class MyDocument extends Document {
 	render() {
 		return (
 			<Html>
-				<Head>
+				<Head title='Jordi Isern Photography'>
 					<link
-						href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap"
+						href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500&display=swap"
 						rel="stylesheet"
 					/>
 				</Head>
