@@ -36,6 +36,12 @@ collections:
       - { label: "Layout", name: "layout", widget: "hidden" }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Tags", name: "tags", widget: "list" }
+      - label: "Section"
+        name: "section"
+        widget: "select"
+        min: 1
+        multiple: true
+        options: ["retrato", "producto", "lookBook"]
       - label: "Image"
         name: "image"
         widget: "object"

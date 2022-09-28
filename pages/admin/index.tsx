@@ -77,7 +77,6 @@ const AdminPage = ({ allPosts }: { allPosts: Post[] }) => {
 					name: "preSave",
 					handler: preSaveHandler,
 				});
-				console.log('allPosts', allPosts);
 				CMS.registerPreviewTemplate("postsOrder", (props) => {
 					return <OrderPreview {...props} allPosts={allPosts} />;
 				});
