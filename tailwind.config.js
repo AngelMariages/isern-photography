@@ -10,8 +10,23 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Rajdhani", ...defaultTheme.fontFamily.sans],
+      },
+      animation: {
+        pulseArrow: "pulseArrow 2s ease-in-out infinite",
+      },
+      keyframes: {
+        pulseArrow: {
+          "0%, 100%": {
+            opacity: 0,
+          },
+          "50%": {
+            opacity: 1,
+          },
+        }
       }
     }
   },
-  plugins: [],
+  plugins: [
+    require("tailwindcss-animation-delay"),
+  ],
 }

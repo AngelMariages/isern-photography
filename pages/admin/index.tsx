@@ -1,23 +1,22 @@
 import { useEffect } from 'react';
 import { getAllPosts, Post } from '../../lib/api';
+import { ApiImageData } from '../api/image';
 import OrderPreview from './previews/OrderPreview';
 type PreviewTemplateComponentProps = import('netlify-cms-core').PreviewTemplateComponentProps;
 
-type ImageSize = {
-	width: number;
-	height: number;
-}
+async function getImageBase64(url: string): Promise<string> {
+	const src = url.replace(/^public(.*)/, "$1");
 
-async function getNaturalImageSize(url: string): Promise<ImageSize> {
 	return new Promise((resolve) => {
-		const img = new Image();
-		img.src = url.replace(/^public(.*)/, "$1");
-		img.onload = () => {
-			resolve({
-				width: img.naturalWidth,
-				height: img.naturalHeight,
+		fetch(src)
+			.then((res) => res.blob())
+			.then((blob) => {
+				const reader = new FileReader();
+				reader.onloadend = () => {
+					resolve(reader.result?.toString() || "");
+				};
+				reader.readAsDataURL(blob);
 			});
-		};
 	});
 }
 
@@ -45,7 +44,15 @@ async function preSaveHandler({ entry }: PreSaveProps) {
 		imageUrl = mediaFile.url;
 	}
 
-	const dimensions = await getNaturalImageSize(imageUrl);
+	const imageData = await fetch('/api/image', {
+		method: 'POST',
+		body: await getImageBase64(imageUrl),
+	}).then(async (res) => (await res?.json()) as ApiImageData | undefined);
+
+	if (imageData === undefined) {
+		alert('error uploading image')
+		return;
+	}
 
 	return entry
 		.get("data")
@@ -54,12 +61,13 @@ async function preSaveHandler({ entry }: PreSaveProps) {
 			entry
 				.get("data")
 				.get("image")
-				.set("width", dimensions.width)
-				.set("height", dimensions.height)
+				.set('blurDataURL', imageData.blurDataURL)
+				.set("width", imageData.width)
+				.set("height", imageData.height)
 		);
 }
 
-const AdminPage = ({ allPosts }: { allPosts: Post[]}) => {
+const AdminPage = ({ allPosts }: { allPosts: Post[] }) => {
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
 			(async () => {
@@ -69,12 +77,14 @@ const AdminPage = ({ allPosts }: { allPosts: Post[]}) => {
 					name: "preSave",
 					handler: preSaveHandler,
 				});
+				console.log('allPosts', allPosts);
 				CMS.registerPreviewTemplate("postsOrder", (props) => {
 					return <OrderPreview {...props} allPosts={allPosts} />;
 				});
 				CMS.registerPreviewStyle("/admin/main.css");
 			})();
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return <div></div>;

@@ -1,7 +1,20 @@
 ---
 postOrderList:
-  - postSlug: girl-in-land-sunset-1
+  - postSlug: test-1
+  - postSlug: test-2
   - postSlug: test-3
-  - postSlug: girl-in-land-sunset-2
-  - postSlug: test-test
+  - postSlug: test-4
+  - postSlug: test-5
+  - postSlug: test-6
+  - postSlug: test-7
+  - postSlug: test-8
+  - postSlug: test-9
+  - postSlug: test-10
+  - postSlug: test-11
+  - postSlug: test-12
+  - postSlug: test-13
+  - postSlug: test-14
+  - postSlug: test-15
+  - postSlug: test-16
+  - postSlug: test-17
 ---

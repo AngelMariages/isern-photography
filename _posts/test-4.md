@@ -1,13 +1,10 @@
 ---
-layout: blog
-title: Girl in land sunset
+title: test-4
 tags:
-  - girl
-  - land
-  - sunset
-  - field
+  - wow
 image:
-  src: /images/test-4.jpg
-  width: 1772 
-  height: 2362
+  src: /images/_5260146-editar.jpg
+  blurDataURL: data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCABLAGQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAECAwj/xAAXEAEBAQEAAAAAAAAAAAAAAAAAAREC/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APKgAAAAsUGRpAQAAAAAAAAAGouJG5ATEsdMSwHKo3YyCAAAAAAAA1HXlyjfNB1iWEq0HLqMWOvTn0DAqAAAAAAArUrCwHWVdctXQbtYpqUEqAAAAAAAAACmoAuiAAAAAP/Z
+  width: 2048
+  height: 1536
 ---

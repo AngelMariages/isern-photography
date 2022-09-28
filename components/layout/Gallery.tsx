@@ -2,6 +2,7 @@ import { Post } from '../../lib/api';
 import PostImage from '../PostImage';
 import ImageLightbox from '../ImageLightbox';
 import { useMemo, useState } from 'react';
+import Masonry from 'react-masonry-css';
 
 const Gallery = ({ allPosts, withGallery = true }: {
 	allPosts: Post[],
@@ -21,25 +22,25 @@ const Gallery = ({ allPosts, withGallery = true }: {
 					setIsOpen={setIsLightboxOpen}
 				/>
 			)}
-			<div className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-2'>
+			{/* <div className='grid grid-cols-4'> */}
+			<Masonry breakpointCols={{
+				default: 4,
+				1100: 3,
+				700: 2,
+				500: 1
+			}} className="flex w-auto ml-[-20px]">
 				{allPosts.map(({ image }, id) => (
-					<div key={id} className='relative w-full mb-2'>
-						<div className='inline-flex' style={{
-							paddingTop: `calc(${100 / (image.width / image.height)}% - 2px)`
-						}}>
-							<div>
-								<PostImage
-									onClick={() => {
-										setIsLightboxOpen(true);
-										setCurrentIndex(id);
-									}}
-									image={image}
-								/>
-							</div>
-						</div>
-					</div>
+					<PostImage
+						key={id}
+						onClick={() => {
+							setIsLightboxOpen(true);
+							setCurrentIndex(id);
+						}}
+						image={image}
+					/>
 				))}
-			</div>
+			</Masonry>
+			{/* </div> */}
 		</>
 	);
 }

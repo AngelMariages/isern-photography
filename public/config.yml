@@ -1,5 +1,7 @@
+local_backend: true
 backend:
-  name: github
+  # name: github
+  name: git-gateway
   repo: AngelMariages/isern-photography
   branch: main
   base_url: "https://isern-photography.vercel.app/"
