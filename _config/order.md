@@ -17,4 +17,5 @@ postOrderList:
   - postSlug: test-15
   - postSlug: test-16
   - postSlug: test-17
+  - postSlug: test-18
 ---
