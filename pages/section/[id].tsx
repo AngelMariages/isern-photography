@@ -4,20 +4,19 @@ import Header from '../../components/Header';
 import Gallery from '../../components/layout/Gallery';
 import { getAllPosts, Post } from '../../lib/api';
 
-const TITLE_BY_ID = {
+const SECTIONS = {
 	retrato: 'Retrato',
 	producto: 'Producto',
 	lookBook: 'Look-book'
-}
+};
 
 const Section = ({ allPosts }: {
 	allPosts: Post[];
 }) => {
 	const router = useRouter();
-	const { id } = router.query;
+	const { id } = router.query as { id: keyof typeof SECTIONS };
+	const title = `Jordi Isern Photography - ${SECTIONS[id]}`;
 
-	// @ts-ignore
-	const title = `Jordi Isern Photography - ${TITLE_BY_ID[id] || ''}`;
 
 	return (
 		<div className='bg-gray-300'>
@@ -37,11 +36,9 @@ const Section = ({ allPosts }: {
 
 export async function getStaticPaths() {
 	return {
-		paths: [
-			{ params: { id: 'retrato' } },
-			{ params: { id: 'producto' } },
-			{ params: { id: 'lookBook' } }
-		],
+		paths: Object.keys(SECTIONS).map((section) => ({
+			params: { id: section }
+		})),
 		fallback: false
 	}
 }

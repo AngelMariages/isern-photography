@@ -36,7 +36,7 @@ const Header: React.FC<{ variant: 'light' | 'dark' }> = ({ variant }) => {
 					<HeaderItem href='/section/retrato' title="RETRATO" />
 					<HeaderItem href='/section/producto' title="PRODUCTO" />
 					<HeaderItem href='/section/lookBook' title="LOOK BOOK" />
-					<HeaderItem href='/contacto' title="CONTACTO" />
+					<HeaderItem href='/contact' title="CONTACTO" />
 				</div>
 			</div>
 		</div>
