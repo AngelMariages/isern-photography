@@ -1,3 +1,4 @@
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Header from '../../components/Header';
@@ -10,9 +11,24 @@ const SECTIONS = {
 	lookBook: 'Look-book'
 };
 
-const Section = ({ allPosts }: {
-	allPosts: Post[];
-}) => {
+export const getStaticPaths: GetStaticPaths = () => {
+	return {
+		paths: Object.keys(SECTIONS).map((section) => ({
+			params: { id: section }
+		})),
+		fallback: false
+	}
+}
+
+export const getStaticProps: GetStaticProps<{ allPosts: Post[] }, { id: string }> = async ({ params }) => {
+	return {
+		props: {
+			allPosts: await getAllPosts(params?.id),
+		}
+	}
+}
+
+const Section = ({ allPosts }: InferGetStaticPropsType<typeof getStaticProps>) => {
 	const router = useRouter();
 	const { id } = router.query as { id: keyof typeof SECTIONS };
 	const title = `Jordi Isern Photography - ${SECTIONS[id]}`;
@@ -33,22 +49,5 @@ const Section = ({ allPosts }: {
 		</div>
 	);
 };
-
-export async function getStaticPaths() {
-	return {
-		paths: Object.keys(SECTIONS).map((section) => ({
-			params: { id: section }
-		})),
-		fallback: false
-	}
-}
-
-export async function getStaticProps({ params: { id } }: { params: { id: string } }) {
-	return {
-		props: {
-			allPosts: await getAllPosts(id),
-		}
-	}
-}
 
 export default Section;

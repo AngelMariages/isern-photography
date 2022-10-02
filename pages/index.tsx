@@ -5,11 +5,20 @@ import Gallery from '../components/layout/Gallery';
 import ScrollDownArrow from '../components/ScrollDownArrow';
 import { useRef } from 'react';
 import Head from 'next/head';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 
-const Home = ({ mainPost, allPosts }: {
-  mainPost: Post;
-  allPosts: Post[];
-}) => {
+export const getStaticProps: GetStaticProps<{ allPosts: Post[], mainPost: Post }> = async () => {
+  const allPosts = await getAllPosts();
+
+  return {
+    props: {
+      allPosts: allPosts.slice(1),
+      mainPost: allPosts[0]
+    }
+  }
+};
+
+const Home = ({ mainPost, allPosts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const galleryContainerRef = useRef(null);
 
   return (
@@ -25,17 +34,6 @@ const Home = ({ mainPost, allPosts }: {
       </div>
     </div>
   );
-}
-
-export async function getStaticProps() {
-  const allPosts = await getAllPosts();
-
-  return {
-    props: {
-      allPosts: allPosts.slice(1),
-      mainPost: allPosts[0]
-    }
-  }
 }
 
 export default Home;

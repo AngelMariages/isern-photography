@@ -1,3 +1,4 @@
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useEffect } from 'react';
 import { getAllPosts, Post } from '../../lib/api';
 import { ApiImageData } from '../api/image';
@@ -67,7 +68,15 @@ async function preSaveHandler({ entry }: PreSaveProps) {
 		);
 }
 
-const AdminPage = ({ allPosts }: { allPosts: Post[] }) => {
+export const getStaticProps: GetStaticProps<{ allPosts: Post[] }> = async () => {
+	return {
+		props: {
+			allPosts: await getAllPosts(),
+		}
+	}
+}
+
+const AdminPage = ({ allPosts }: InferGetStaticPropsType<typeof getStaticProps>) => {
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
 			(async () => {
@@ -88,17 +97,5 @@ const AdminPage = ({ allPosts }: { allPosts: Post[] }) => {
 
 	return <div></div>;
 };
-
-
-export async function getStaticProps() {
-	const allPosts = await getAllPosts();
-
-	return {
-		props: {
-			allPosts
-		}
-	}
-}
-
 
 export default AdminPage;
