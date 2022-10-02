@@ -17,7 +17,7 @@ const HeaderItem: React.FC<{ title: string, href: string }> = ({
 
 const Header: React.FC<{ variant: 'light' | 'dark' }> = ({ variant }) => {
 	return (
-		<div className='absolute'>
+		<div className='z-10 absolute'>
 			<div className='relative'>
 				<Link href="/" passHref rel='home' title='Isern photography'>
 					<a className='cursor-pointer block ml-[60px] pt-8 z-20 fixed'>
