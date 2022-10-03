@@ -3,7 +3,7 @@ import "react-image-lightbox/style.css";
 
 type Image = {
 	src: string;
-	preview: string;
+	preview?: string;
 }
 
 const ImageLightbox: React.FC<{ images: Image[]; currentIndex: number; setCurrentIndex: Function, setIsOpen: Function }> = ({ images, currentIndex, setCurrentIndex, setIsOpen }) => {
