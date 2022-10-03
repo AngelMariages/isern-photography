@@ -10,11 +10,21 @@ collections:
   - name: settings
     label: Settings
     files:
-    - name: postsOrder
-      label: Collection Order
+    - name: order
+      label: Order
       file: _config/order.md
       fields:
-        - label: Order
+        - label: Section order
+          widget: list
+          name: sectionOrderList
+          fields:
+            - label: Section name
+              name: sectionName
+              widget: "select"
+              min: 1
+              max: 1
+              options: ["retrato", "producto", "lookBook", "fotosFamilia"]
+        - label: Posts order
           widget: list
           name: postOrderList
           fields:
@@ -31,15 +41,18 @@ collections:
     create: true
     slug: "{{title}}"
     fields:
-      - { label: "Layout", name: "layout", widget: "hidden" }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Tags", name: "tags", widget: "list" }
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
       - label: "Section"
         name: "section"
-        widget: "select"
-        min: 1
-        multiple: true
-        options: ["retrato", "producto", "lookBook"]
+        widget: "relation"
+        collection: "settings"
+        search_fields: ["sectionOrderList.*.sectionName"]
+        value_field: "sectionOrderList.*.sectionName"
       - label: "Image"
         name: "image"
         widget: "object"
