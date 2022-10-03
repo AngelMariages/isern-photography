@@ -1,5 +1,4 @@
 import Image from 'next/future/image';
-// import Image from 'next/image';
 import { PostImage } from '../lib/api'
 
 const MainImage = ({ image }: {
@@ -13,7 +12,7 @@ const MainImage = ({ image }: {
 			priority
 			loading='eager'
 			className='object-cover w-full h-screen'
-			placeholder='blur'
+			placeholder={image.blurDataURL ? 'blur' : undefined}
 			blurDataURL={image.blurDataURL}
 			width={image.width}
 			height={image.height}

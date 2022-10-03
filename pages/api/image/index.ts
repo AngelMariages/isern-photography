@@ -42,6 +42,10 @@ async function getBlurImgFromBase64DataUrl(image: sharp.Sharp, metadata: sharp.M
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+	if (!req.headers.referer?.includes('admin')) {
+		return res.status(404).json({ message: 'Not found' });
+	}
+
 	if (req.method === 'POST') {
 		const imageDataUrl = (await buffer(req)).toString();
 

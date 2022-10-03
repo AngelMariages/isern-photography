@@ -2,15 +2,13 @@ import { readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
 import matter from 'gray-matter';
 
-// const POST_FIELDS = ['title', 'slug', 'tags', 'image'];
-
 const postsDirectory = join(process.cwd(), '_posts');
 
 export type PostImage = {
 	src: string;
 	width: number;
 	height: number;
-	blurDataURL: string;
+	blurDataURL?: string;
 }
 
 export type Post = {

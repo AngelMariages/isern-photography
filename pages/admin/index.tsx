@@ -1,9 +1,7 @@
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useEffect } from 'react';
-import { getAllPosts, Post } from '../../lib/api';
 import { ApiImageData } from '../api/image';
 import OrderPreview from './previews/OrderPreview';
-type PreviewTemplateComponentProps = import('netlify-cms-core').PreviewTemplateComponentProps;
+import type { PreviewTemplateComponentProps } from 'netlify-cms-core';
 
 async function getImageBase64(url: string): Promise<string> {
 	const src = url.replace(/^public(.*)/, "$1");
@@ -68,15 +66,7 @@ async function preSaveHandler({ entry }: PreSaveProps) {
 		);
 }
 
-export const getStaticProps: GetStaticProps<{ allPosts: Post[] }> = async () => {
-	return {
-		props: {
-			allPosts: await getAllPosts(),
-		}
-	}
-}
-
-const AdminPage = ({ allPosts }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const AdminPage = () => {
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
 			(async () => {
@@ -87,7 +77,7 @@ const AdminPage = ({ allPosts }: InferGetStaticPropsType<typeof getStaticProps>)
 					handler: preSaveHandler,
 				});
 				CMS.registerPreviewTemplate("postsOrder", (props) => {
-					return <OrderPreview {...props} allPosts={allPosts} />;
+					return <OrderPreview {...props} />;
 				});
 				CMS.registerPreviewStyle("/admin/main.css");
 			})();
