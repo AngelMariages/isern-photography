@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 			section = rawSection;
 		}
 
-		return res.status(200).json(await getAllPosts(section));
+		return res.status(200).json(getAllPosts(section));
 	}
 
 	return res.status(404).json({ message: 'Not found' });

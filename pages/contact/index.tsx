@@ -1,12 +1,13 @@
 import Head from 'next/head';
 import Header from '../../components/Header';
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
-import { PostImage } from '../../lib/api';
+import { getSectionOrder, PostImage } from '../../lib/api';
 import MainImage from '../../components/MainImage';
 import { Formik } from 'formik';
 import { object, string } from 'yup';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 
 type FormValues = {
 	name: string;
@@ -23,7 +24,15 @@ const mainImage: PostImage = {
 	height: 2048,
 }
 
-const Contact = () => {
+export const getStaticProps: GetStaticProps<{ sectionOrder: string[] }> = async () => {
+	return {
+		props: {
+			sectionOrder: getSectionOrder()
+		}
+	}
+}
+
+const Contact = ({ sectionOrder }: InferGetStaticPropsType<typeof getStaticProps>) => {
 	const { executeRecaptcha } = useGoogleReCaptcha();
 	const router = useRouter();
 
@@ -50,7 +59,7 @@ const Contact = () => {
 			<Head>
 				<title>Jordi Isern Photography - Contact</title>
 			</Head>
-			<Header variant='light' />
+			<Header variant='light' sectionOrder={sectionOrder} />
 			<div className='h-screen text-gray-300'>
 				<div className='absolute h-screen w-full'>
 					<MainImage image={mainImage} />
@@ -129,10 +138,14 @@ const Contact = () => {
 	)
 };
 
-export default function ContactWithCaptcha() {
+const ContactWithCaptcha = ({
+	sectionOrder
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
 	return (
 		<GoogleReCaptchaProvider reCaptchaKey='6LcgkT4iAAAAAEw_C2aUo0x4w8ub9tJtWlJ_52WD'>
-			<Contact />
+			<Contact sectionOrder={sectionOrder} />
 		</GoogleReCaptchaProvider>
 	);
 };
+
+export default ContactWithCaptcha;

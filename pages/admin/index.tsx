@@ -76,7 +76,7 @@ const AdminPage = () => {
 					name: "preSave",
 					handler: preSaveHandler,
 				});
-				CMS.registerPreviewTemplate("postsOrder", (props) => {
+				CMS.registerPreviewTemplate("order", (props) => {
 					return <OrderPreview {...props} />;
 				});
 				CMS.registerPreviewStyle("/admin/main.css");

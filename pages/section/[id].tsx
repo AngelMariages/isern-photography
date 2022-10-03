@@ -3,12 +3,13 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Header from '../../components/Header';
 import Gallery from '../../components/layout/Gallery';
-import { getAllPosts, Post } from '../../lib/api';
+import { getAllPosts, getSectionOrder, Post } from '../../lib/api';
 
 const SECTIONS = {
 	retrato: 'Retrato',
 	producto: 'Producto',
-	lookBook: 'Look-book'
+	lookBook: 'Look-book',
+	fotosFamilia: 'Fotos familia',
 };
 
 export const getStaticPaths: GetStaticPaths = () => {
@@ -20,26 +21,26 @@ export const getStaticPaths: GetStaticPaths = () => {
 	}
 }
 
-export const getStaticProps: GetStaticProps<{ allPosts: Post[] }, { id: string }> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<{ allPosts: Post[], sectionOrder: string[] }, { id: string }> = async ({ params }) => {
 	return {
 		props: {
-			allPosts: await getAllPosts(params?.id),
+			allPosts: getAllPosts(params?.id),
+			sectionOrder: getSectionOrder()
 		}
 	}
 }
 
-const Section = ({ allPosts }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Section = ({ allPosts, sectionOrder }: InferGetStaticPropsType<typeof getStaticProps>) => {
 	const router = useRouter();
 	const { id } = router.query as { id: keyof typeof SECTIONS };
 	const title = `Jordi Isern Photography - ${SECTIONS[id]}`;
-
 
 	return (
 		<div className='bg-gray-300'>
 			<Head>
 				<title>{title}</title>
 			</Head>
-			<Header variant='light' />
+			<Header variant='light' sectionOrder={sectionOrder} />
 			<div className='mx-4 pt-[8rem]'>
 				<div className='py-4 pl-4 mt-10 mb-12 bg-gray-500 text-xl capitalize font-semibold'>
 					{id}
