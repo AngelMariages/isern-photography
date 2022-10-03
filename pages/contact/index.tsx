@@ -101,19 +101,19 @@ const Contact = () => {
 
 							return (
 								<form className='flex flex-col pt-20 w-1/2 min-w-[20rem] max-w-[50%]' onSubmit={handleSubmit}>
-									<div className='flex flex-col'>
+									<div className='flex flex-col mb-6'>
 										<label className='text-xl font-medium' htmlFor='name'>Name</label>
-										<input value={values.name} onBlur={handleBlur} onChange={handleChange} className='border border-gray-400 bg-transparent mt-2 mb-6 rounded-sm' type='text' name='name' id='name' />
+										<input value={values.name} onBlur={handleBlur} onChange={handleChange} className='border border-gray-400 bg-transparent my-2 rounded-sm' type='text' name='name' id='name' />
 										{errors.name && touched.name && <div className='text-red-500'>{errors.name}</div>}
 									</div>
-									<div className='flex flex-col'>
+									<div className='flex flex-col mb-6'>
 										<label className='text-xl font-medium' htmlFor='email'>Email</label>
-										<input value={values.email} onBlur={handleBlur} onChange={handleChange} className='border border-gray-400 bg-transparent mt-2 mb-6 rounded-sm' type='text' name='email' id='email' />
+										<input value={values.email} onBlur={handleBlur} onChange={handleChange} className='border border-gray-400 bg-transparent my-2 rounded-sm' type='text' name='email' id='email' />
 										{errors.email && touched.email && <div className='text-red-500'>{errors.email}</div>}
 									</div>
-									<div className='flex flex-col'>
+									<div className='flex flex-col mb-6'>
 										<label className='text-xl font-medium' htmlFor='message'>Message</label>
-										<textarea value={values.message} onBlur={handleBlur} onChange={handleChange} className='border border-gray-400 bg-transparent mt-2 mb-6 rounded-sm' name='message' id='message' cols={30} rows={10} />
+										<textarea value={values.message} onBlur={handleBlur} onChange={handleChange} className='border border-gray-400 bg-transparent my-2 rounded-sm' name='message' id='message' cols={30} rows={10} />
 										{errors.message && touched.message && <div className='text-red-500'>{errors.message}</div>}
 									</div>
 									<button className='bg-gray-400 w-32 font-semibold text-black text-xl uppercase rounded-sm' type='submit'>
