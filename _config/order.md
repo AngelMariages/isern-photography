@@ -3,7 +3,6 @@ sectionOrderList:
   - sectionName: retrato
   - sectionName: lookBook
   - sectionName: producto
-  - sectionName: fotosFamilia
 postOrderList:
   - postSlug: test-1
   - postSlug: test-2
