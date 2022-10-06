@@ -1,7 +1,7 @@
 ---
 title: Erin Olivia 1
 tags:
-  - Familia
+  - familia
 section: fotosFamilia
 image:
   src: /images/_a010141.jpg
