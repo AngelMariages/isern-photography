@@ -23,4 +23,5 @@ postOrderList:
   - postSlug: test-16
   - postSlug: test-17
   - postSlug: erin-olivia-1
+  - postSlug: erin-olivia-2
 ---
