@@ -99,7 +99,7 @@ export function getAllPosts(section?: string): Post[] {
 	} else {
 		const order = getPostsOrder();
 
-		return posts.sort((a, b) => {
+		return posts.filter((post) => order.includes(post.slug)).sort((a, b) => {
 			const aIndex = order.indexOf(a.slug);
 			const bIndex = order.indexOf(b.slug);
 
