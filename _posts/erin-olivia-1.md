@@ -2,6 +2,35 @@
 title: Erin Olivia 1
 tags:
   - familia
+  - fotografía
+  - navidad
+  - family
+  - photography
+  - christmas
+  - love
+  - foto
+  - madrid
+  - amigos
+  - photo
+  - barcelona
+  - españa
+  - spain
+  - amor
+  - regalos
+  - vacaciones
+  - photographer
+  - photooftheday
+  - navidad2023
+  - relax
+  - picoftheday
+  - nadal
+  - fotografia
+  - verano
+  - nature
+  - xmas
+  - happy
+  - instagood
+  - diciembre
 section: fotosFamilia
 image:
   src: /images/_a010141.jpg
