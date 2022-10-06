@@ -1,9 +1,9 @@
 import Image from 'next/future/image';
 import { PostImage } from '../lib/api';
 
-const PostImage: React.FC<{ image: PostImage, onClick: () => void }> = ({ image, onClick }) => {
+const PostImage: React.FC<{ image: PostImage, onClick: () => void, className?: string }> = ({ image, onClick, className }) => {
 	return (
-		<div className='overflow-hidden cursor-pointer'>
+		<div className={`overflow-hidden cursor-pointer ${className ?? '' }`}>
 			<Image
 				onClick={onClick}
 				src={image.src}

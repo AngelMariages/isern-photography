@@ -30,8 +30,8 @@ const Home = ({ mainPost, allPosts, sectionOrder }: InferGetStaticPropsType<type
       <Header variant='dark' sectionOrder={sectionOrder} />
       <MainImage image={mainPost.image} />
       <ScrollDownArrow scrollToRef={galleryContainerRef} />
-      <div ref={galleryContainerRef} className='mx-2 pt-20'>
-        <Gallery allPosts={allPosts} />
+      <div ref={galleryContainerRef}>
+        <Gallery allPosts={allPosts} sectionOrder={sectionOrder} />
       </div>
     </div>
   );

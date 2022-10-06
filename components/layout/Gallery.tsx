@@ -4,13 +4,36 @@ import ImageLightbox from '../ImageLightbox';
 import { useMemo, useState } from 'react';
 import Masonry from 'react-masonry-css';
 
-const Gallery = ({ allPosts, withGallery = true }: {
+const GallerySectionSelector = ({ section, currentSection, onSectionChange }: { section: string, currentSection: string, onSectionChange: (section: string) => void }) => {
+	return (
+		<button onClick={() => onSectionChange(section)} className={`uppercase ${section === currentSection ? 'text-gray-400' : ''}`}>
+			{section}
+		</button>
+	);
+};
+
+const Gallery = ({ allPosts, withGallery = true, sectionOrder = [] }: {
 	allPosts: Post[],
+	sectionOrder?: string[],
 	withGallery?: boolean,
 }) => {
 	const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState(0);
-	const images = useMemo(() => allPosts.map(post => ({ src: post.image.src, preview: post.image.blurDataURL })), [allPosts])
+	const images = useMemo(() => allPosts.map(post => ({ src: post.image.src, preview: post.image.blurDataURL })), [allPosts]);
+	const [currentSection, setCurrentSection] = useState('all');
+
+
+	const allPostsBySection = useMemo(() => {
+		return allPosts.reduce((acc, post) => {
+			acc[post.section] = [
+				...(acc[post.section] || []),
+				post,
+			];
+			return acc;
+		}, {
+			all: allPosts,
+		} as Record<string, Post[]>);
+	}, [allPosts]);
 
 	return (
 		<>
@@ -22,14 +45,26 @@ const Gallery = ({ allPosts, withGallery = true }: {
 					setIsOpen={setIsLightboxOpen}
 				/>
 			)}
-			{/* <div className='grid grid-cols-4'> */}
+			<div className='flex gap-8 text-xl text-gray-100 my-10 justify-center'>
+				<GallerySectionSelector section='all' currentSection={currentSection} onSectionChange={setCurrentSection} />
+				{sectionOrder.map(section => {
+					return (
+						<GallerySectionSelector
+							key={section}
+							section={section}
+							currentSection={currentSection}
+							onSectionChange={setCurrentSection}
+						/>
+					);
+				})}
+			</div>
 			<Masonry breakpointCols={{
 				default: 4,
 				1100: 3,
 				700: 2,
 				500: 1
-			}} className="flex w-auto">
-				{allPosts.map(({ image }, id) => (
+			}} className="flex w-auto" >
+				{allPostsBySection[currentSection].map(({ image }, id) => (
 					<PostImage
 						key={id}
 						onClick={() => {
@@ -40,7 +75,6 @@ const Gallery = ({ allPosts, withGallery = true }: {
 					/>
 				))}
 			</Masonry>
-			{/* </div> */}
 		</>
 	);
 }
