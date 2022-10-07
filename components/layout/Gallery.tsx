@@ -24,16 +24,15 @@ const Gallery = ({ allPosts, withGallery = true, sectionOrder = [] }: {
 
 
 	const allPostsBySection = useMemo(() => {
-		return allPosts.reduce((acc, post) => {
-			acc[post.section] = [
-				...(acc[post.section] || []),
-				post,
-			];
-			return acc;
+		return sectionOrder.reduce((acc, section) => {
+			return {
+				...acc,
+				[section]: allPosts.filter(post => post.section === section),
+			};
 		}, {
 			all: allPosts,
 		} as Record<string, Post[]>);
-	}, [allPosts]);
+	}, [allPosts, sectionOrder]);
 
 	return (
 		<>
@@ -45,19 +44,21 @@ const Gallery = ({ allPosts, withGallery = true, sectionOrder = [] }: {
 					setIsOpen={setIsLightboxOpen}
 				/>
 			)}
-			<div className='flex gap-8 text-xl text-gray-100 my-10 justify-center'>
-				<GallerySectionSelector section='all' currentSection={currentSection} onSectionChange={setCurrentSection} />
-				{sectionOrder.map(section => {
-					return (
-						<GallerySectionSelector
-							key={section}
-							section={section}
-							currentSection={currentSection}
-							onSectionChange={setCurrentSection}
-						/>
-					);
-				})}
-			</div>
+			{sectionOrder.length ? (
+				<div className='flex gap-8 text-xl text-gray-100 my-10 justify-center'>
+					<GallerySectionSelector section='all' currentSection={currentSection} onSectionChange={setCurrentSection} />
+					{sectionOrder.map(section => {
+						return (
+							<GallerySectionSelector
+								key={section}
+								section={section}
+								currentSection={currentSection}
+								onSectionChange={setCurrentSection}
+							/>
+						);
+					})}
+				</div>
+			) : null}
 			<Masonry breakpointCols={{
 				default: 4,
 				1100: 3,
