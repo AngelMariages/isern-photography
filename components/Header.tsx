@@ -36,13 +36,13 @@ const HeaderItem: React.FC<{ title: string, href: string }> = ({
 
 const Header: React.FC<{ variant: 'light' | 'dark', sectionOrder: string[] }> = ({ variant, sectionOrder }) => {
 	return (
-		<div className='z-10 absolute'>
+		<div className='z-10 absolute w-full'>
 			<div className='relative'>
-				<Link href="/" passHref rel='home' title='Isern photography'>
-					<a className='cursor-pointer block ml-[60px] pt-8 z-20 fixed'>
+				<Link href="/" rel='home' title='Isern photography'>
+					<h1 className='cursor-pointer block ml-[60px] pt-8 z-20 fixed'>
 						<div className='text-white font-medium text-4xl'>Isern</div>
-						<div className='text-white uppercase font-normal text-xxs'>photography</div>
-					</a>
+						<div className='text-white uppercase font-normal text-xxs'> photography</div>
+					</h1>
 				</Link>
 				<div className={
 					'z-10 flex justify-center w-screen top-0 ' +

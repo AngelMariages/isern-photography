@@ -1,9 +1,20 @@
 import Image from 'next/future/image';
-import { PostImage } from '../lib/api';
+import { Post } from '../lib/api';
 
-const PostImage: React.FC<{ image: PostImage, onClick: () => void, className?: string }> = ({ image, onClick, className }) => {
+type PostImageProps = {
+	post: Post;
+	onClick: () => void;
+	className?: string;
+};
+
+const PostImage: React.FC<PostImageProps> = ({ post, onClick, className, ...rest }) => {
+	const { image } = post;
+
 	return (
-		<div className={`overflow-hidden cursor-pointer ${className ?? '' }`}>
+		<div
+			className={`overflow-hidden cursor-pointer ${className ?? ''}`}
+			{...rest}
+		>
 			<Image
 				onClick={onClick}
 				src={image.src}
@@ -22,6 +33,6 @@ const PostImage: React.FC<{ image: PostImage, onClick: () => void, className?: s
 			/>
 		</div>
 	);
-}
+};
 
 export default PostImage;

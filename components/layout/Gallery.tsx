@@ -2,7 +2,7 @@ import { Post } from '../../lib/api';
 import PostImage from '../PostImage';
 import ImageLightbox from '../ImageLightbox';
 import { useMemo, useState } from 'react';
-import Masonry from 'react-masonry-css';
+import Masonry from './Masonry';
 
 const GallerySectionSelector = ({ section, currentSection, onSectionChange }: { section: string, currentSection: string, onSectionChange: (section: string) => void }) => {
 	return (
@@ -45,7 +45,7 @@ const Gallery = ({ allPosts, withGallery = true, sectionOrder = [] }: {
 				/>
 			)}
 			{sectionOrder.length ? (
-				<div className='flex gap-8 text-xl text-gray-100 my-10 justify-center'>
+				<div className='flex flex-wrap gap-8 text-xl text-gray-100 my-10 justify-center'>
 					<GallerySectionSelector section='all' currentSection={currentSection} onSectionChange={setCurrentSection} />
 					{sectionOrder.map(section => {
 						return (
@@ -59,20 +59,15 @@ const Gallery = ({ allPosts, withGallery = true, sectionOrder = [] }: {
 					})}
 				</div>
 			) : null}
-			<Masonry breakpointCols={{
-				default: 4,
-				1100: 3,
-				700: 2,
-				500: 1
-			}} className="flex w-auto" >
-				{allPostsBySection[currentSection].map(({ image }, id) => (
+			<Masonry className="flex w-auto">
+				{allPostsBySection[currentSection].map((post, index) => (
 					<PostImage
-						key={id}
+						key={post.slug}
 						onClick={() => {
 							setIsLightboxOpen(true);
-							setCurrentIndex(id);
+							setCurrentIndex(index);
 						}}
-						image={image}
+						post={post}
 					/>
 				))}
 			</Masonry>

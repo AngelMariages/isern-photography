@@ -17,12 +17,14 @@ const Gallery = dynamic(() => import('../../../components/layout/Gallery'), {
 
 type OrderPreviewProps = PreviewTemplateComponentProps;
 
-const OrderPreview: React.FC<OrderPreviewProps> = ({ entry }) => {
+const OrderPreview: React.FC<OrderPreviewProps> = (props) => {
 	const [postsList, setPostsList] = useState<Post[]>([]);
 	const [allPosts, setAllPosts] = useState<Post[]>([]);
 	const [mainPost, setMainPost] = useState<Post>();
 
-	const { postOrderList } = entry?.get("data")?.toJS() || {};
+	const { postOrderList } = props.entry?.get("data")?.toJS() || {};
+
+	debugger;
 
 	useEffect(() => {
 		(async () => {
