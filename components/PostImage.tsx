@@ -16,20 +16,21 @@ const PostImage: React.FC<PostImageProps> = ({ post, onClick, className, ...rest
 			{...rest}
 		>
 			<Image
-				onClick={onClick}
 				src={image.src}
+				onClick={onClick}
 				placeholder={image.blurDataURL ? 'blur' : undefined}
 				blurDataURL={image.blurDataURL}
-				alt=''
-				className='duration-700 ease-in-out hover:scale-110 '
+				alt={post.title}
+				className='duration-700 ease-in-out hover:scale-110'
+				width={image.width}
+				height={image.height}
+				quality={100}
 				sizes={
 					'(max-width: 640px) 100vw' +
 					',(max-width: 768px) 50vw' +
 					',(max-width: 1280px) 33vw' +
 					',(max-width: 1920px) 25vw'
 				}
-				width={image.width}
-				height={image.height}
 			/>
 		</div>
 	);

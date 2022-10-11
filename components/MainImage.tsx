@@ -16,6 +16,7 @@ const MainImage = ({ image }: {
 			blurDataURL={image.blurDataURL}
 			width={image.width}
 			height={image.height}
+			quality={100}
 		/>
 	);
 }
