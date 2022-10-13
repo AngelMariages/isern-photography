@@ -24,7 +24,7 @@ const PostImage: React.FC<PostImageProps> = ({ post, onClick, className, ...rest
 				className='duration-700 ease-in-out hover:scale-110'
 				width={image.width}
 				height={image.height}
-				quality={100}
+				quality={80}
 				sizes={
 					'(max-width: 640px) 100vw' +
 					',(max-width: 768px) 50vw' +
