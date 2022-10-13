@@ -4,11 +4,7 @@ import MainImage from '../components/MainImage';
 import ScrollDownArrow from '../components/ScrollDownArrow';
 import Head from 'next/head';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import dynamic from 'next/dynamic';
-
-const Gallery = dynamic(() => import('../components/layout/Gallery'), {
-	ssr: false,
-});
+import Gallery from '../components/layout/Gallery';
 
 export const getStaticProps: GetStaticProps<{ allPosts: Post[], mainPost: Post, sectionOrder: string[] }> = async () => {
   const allPosts = getAllPosts();
