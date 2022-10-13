@@ -4,7 +4,7 @@ import ImageLightbox from '../ImageLightbox';
 import { useMemo, useState } from 'react';
 import Masonry from './Masonry';
 
-const GallerySectionSelector = ({ section, currentSection, onSectionChange }: { section: string, currentSection: string, onSectionChange: (section: string) => void }) => {
+const SectionButton = ({ section, currentSection, onSectionChange }: { section: string, currentSection: string, onSectionChange: (section: string) => void }) => {
 	return (
 		<button onClick={() => onSectionChange(section)} className={`uppercase ${section === currentSection ? 'text-gray-400' : ''}`}>
 			{section}
@@ -12,10 +12,33 @@ const GallerySectionSelector = ({ section, currentSection, onSectionChange }: { 
 	);
 };
 
-const Gallery = ({ allPosts, withGallery = true, sectionOrder = [] }: {
+const SectionSelector = ({ sectionOrder, currentSection, setCurrentSection }: { sectionOrder: string[], currentSection: string, setCurrentSection: (section: string) => void }) => {
+	if (!sectionOrder.length) {
+		return null;
+	}
+
+	return (
+		<div className='flex flex-wrap gap-8 text-xl text-gray-100 my-10 mx-3 justify-center'>
+			<SectionButton section='all' currentSection={currentSection} onSectionChange={setCurrentSection} />
+			{sectionOrder.map(section => {
+				return (
+					<SectionButton
+						key={section}
+						section={section}
+						currentSection={currentSection}
+						onSectionChange={setCurrentSection}
+					/>
+				);
+			})}
+		</div>
+	);
+}
+
+const Gallery = ({ allPosts, withGallery = true, sectionOrder = [], id }: {
 	allPosts: Post[],
 	sectionOrder?: string[],
 	withGallery?: boolean,
+	id?: string
 }) => {
 	const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState(0);
@@ -35,7 +58,7 @@ const Gallery = ({ allPosts, withGallery = true, sectionOrder = [] }: {
 	}, [allPosts, sectionOrder]);
 
 	return (
-		<>
+		<div id={id}>
 			{withGallery && isLightboxOpen && (
 				<ImageLightbox
 					images={images}
@@ -44,22 +67,8 @@ const Gallery = ({ allPosts, withGallery = true, sectionOrder = [] }: {
 					setIsOpen={setIsLightboxOpen}
 				/>
 			)}
-			{sectionOrder.length ? (
-				<div className='flex flex-wrap gap-8 text-xl text-gray-100 my-10 justify-center'>
-					<GallerySectionSelector section='all' currentSection={currentSection} onSectionChange={setCurrentSection} />
-					{sectionOrder.map(section => {
-						return (
-							<GallerySectionSelector
-								key={section}
-								section={section}
-								currentSection={currentSection}
-								onSectionChange={setCurrentSection}
-							/>
-						);
-					})}
-				</div>
-			) : null}
-			<Masonry className="flex w-auto">
+			<SectionSelector sectionOrder={sectionOrder} currentSection={currentSection} setCurrentSection={setCurrentSection} />
+			<Masonry className="flex w-auto snap-mandatory snap-y">
 				{allPostsBySection[currentSection].map((post, index) => (
 					<PostImage
 						key={post.slug}
@@ -67,11 +76,12 @@ const Gallery = ({ allPosts, withGallery = true, sectionOrder = [] }: {
 							setIsLightboxOpen(true);
 							setCurrentIndex(index);
 						}}
+						className="will-change-transform snap-start"
 						post={post}
 					/>
 				))}
 			</Masonry>
-		</>
+		</div>
 	);
 }
 

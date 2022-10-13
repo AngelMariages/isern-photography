@@ -24,8 +24,6 @@ const OrderPreview: React.FC<OrderPreviewProps> = (props) => {
 
 	const { postOrderList } = props.entry?.get("data")?.toJS() || {};
 
-	debugger;
-
 	useEffect(() => {
 		(async () => {
 			setAllPosts(await fetch('/api/posts').then((res) => res.json()) as Post[]);
