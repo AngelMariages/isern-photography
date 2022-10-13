@@ -26,9 +26,9 @@ const PostImage: React.FC<PostImageProps> = ({ post, onClick, className, ...rest
 				height={image.height}
 				quality={80}
 				sizes={
-					'(max-width: 640px) 100vw' +
+					'(max-width: 576px) 100vw' +
 					',(max-width: 768px) 50vw' +
-					',(max-width: 1280px) 33vw' +
+					',(max-width: 1200px) 33vw' +
 					',(max-width: 1920px) 25vw'
 				}
 			/>
