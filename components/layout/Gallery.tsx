@@ -18,7 +18,7 @@ const SectionSelector = ({ sectionOrder, currentSection, setCurrentSection }: { 
 	}
 
 	return (
-		<div className='flex flex-wrap gap-8 text-xl text-gray-100 my-10 mx-3 justify-center'>
+		<div className='flex flex-wrap gap-8 text-xl text-gray-100 py-10 px-3 justify-center'>
 			<SectionButton section='all' currentSection={currentSection} onSectionChange={setCurrentSection} />
 			{sectionOrder.map(section => {
 				return (

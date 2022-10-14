@@ -51,7 +51,7 @@ const Masonry: React.FC<{
 					resizeObserver.unobserve(currentContainer);
 				};
 			}
-		});
+		}, [containerRef, updateColumns]);
 
 		const childrenInColumns = useMemo(() => {
 			const mappedChildren = new Array(columns).fill(null).map(() => [] as React.ReactElement[]);
@@ -73,7 +73,22 @@ const Masonry: React.FC<{
 							<div key={i} style={{ width: columnWidth }}>
 								{column.map((child) => {
 									return (
-										<Flipped key={child.key} flipId={child.key!}>
+										<Flipped
+											key={child.key}
+											flipId={child.key!}
+											onAppear={(el) => {
+												el.classList.add('animate-fadeIn');
+
+												el.addEventListener('animationend', () => {
+													el.classList.remove("animate-fadeIn");
+													el.style.opacity = '1';
+												});
+											}}
+											onExit={(el, _, removeElement) => {
+												el.classList.add('animate-fadeOut');
+												el.addEventListener('animationend', removeElement);
+											}}
+										>
 											{flippedProps => React.cloneElement(child, flippedProps)}
 										</Flipped>
 									);

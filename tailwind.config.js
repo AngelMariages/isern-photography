@@ -19,6 +19,8 @@ module.exports = {
       },
       animation: {
         pulseArrow: "pulseArrow 2s ease-in-out infinite",
+        fadeIn: "fadeIn .3s cubic-bezier(0.47, 0, 0.745, 0.715)",
+        fadeOut: "fadeOut .3s cubic-bezier(0.47, 0, 0.745, 0.715)",
       },
       keyframes: {
         pulseArrow: {
@@ -28,7 +30,23 @@ module.exports = {
           "50%": {
             opacity: 1,
           },
-        }
+        },
+        fadeIn: {
+          "0%": {
+            opacity: 0,
+          },
+          "100%": {
+            opacity: 1,
+          },
+        },
+        fadeOut: {
+          "0%": {
+            opacity: 1,
+          },
+          "100%": {
+            opacity: 0,
+          },
+        },
       }
     }
   },

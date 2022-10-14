@@ -1,7 +1,7 @@
 import { getAllPosts, getSectionOrder, Post } from '../lib/api';
 import Header from '../components/Header';
 import MainImage from '../components/MainImage';
-import ScrollDownArrow from '../components/ScrollDownArrow';
+import ScrollDownArrows from '../components/ScrollDownArrow';
 import Head from 'next/head';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Gallery from '../components/layout/Gallery';
@@ -27,7 +27,7 @@ const Home = ({ mainPost, allPosts, sectionOrder }: InferGetStaticPropsType<type
       </Head>
       <Header variant='dark' sectionOrder={sectionOrder} />
       <MainImage image={mainPost.image} />
-      <ScrollDownArrow toID='gallery' />
+      <ScrollDownArrows toID='gallery' />
       <Gallery id="gallery" allPosts={allPosts} sectionOrder={sectionOrder} />
     </div>
   );

@@ -4,7 +4,6 @@ import { PostImage } from '../lib/api'
 const MainImage = ({ image }: {
 	image: PostImage
 }) => {
-
 	return (
 		<Image
 			src={image.src}

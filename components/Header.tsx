@@ -55,10 +55,14 @@ const Header: React.FC<{ variant: 'light' | 'dark', sectionOrder: string[] }> = 
 				}>
 
 					<HeaderItem href="/" title="HOME" />
-					{sectionOrder.map((section) => {
-						if (!sections[section as keyof typeof sections]) return null;
+					{sectionOrder.map((rawSection) => {
+						const section = rawSection as keyof typeof sections;
 
-						const { name, path } = sections[section as keyof typeof sections];
+						if (!sections[section]) {
+							return null;
+						}
+
+						const { name, path } = sections[section];
 
 						return (
 							<HeaderItem

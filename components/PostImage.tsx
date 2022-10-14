@@ -1,4 +1,5 @@
 import Image from 'next/future/image';
+import { useState } from 'react';
 import { Post } from '../lib/api';
 
 type PostImageProps = {
@@ -9,6 +10,7 @@ type PostImageProps = {
 
 const PostImage: React.FC<PostImageProps> = ({ post, onClick, className, ...rest }) => {
 	const { image } = post;
+	const [isLoaded, setIsLoaded] = useState(false);
 
 	return (
 		<div
@@ -21,7 +23,8 @@ const PostImage: React.FC<PostImageProps> = ({ post, onClick, className, ...rest
 				placeholder={image.blurDataURL ? 'blur' : undefined}
 				blurDataURL={image.blurDataURL}
 				alt={post.title}
-				className='duration-700 ease-in-out hover:scale-110'
+				className={`duration-700 ease-in-out hover:scale-110 ${!isLoaded ? 'animate-pulse' : ''}`}
+				onLoad={() => setIsLoaded(true)}
 				width={image.width}
 				height={image.height}
 				quality={80}

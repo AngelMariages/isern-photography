@@ -65,8 +65,8 @@ const Contact = ({ sectionOrder }: InferGetStaticPropsType<typeof getStaticProps
 				<div className='absolute h-screen w-full'>
 					<MainImage image={mainImage} />
 				</div>
-				<div className='pt-[8rem] relative z-[9] pl-20 '>
-					<div className='text-4xl text-medium pt-20'>
+				<div className='pt-[8rem] relative z-[9] md:pl-20 pl-10'>
+					<div className='text-4xl text-medium md:py-20 py-10'>
 						Contact
 					</div>
 					<Formik
@@ -110,7 +110,7 @@ const Contact = ({ sectionOrder }: InferGetStaticPropsType<typeof getStaticProps
 							};
 
 							return (
-								<form className='flex flex-col pt-20 w-1/2 min-w-[20rem] max-w-[50%]' onSubmit={handleSubmit}>
+								<form className='flex flex-col w-1/2 min-w-[20rem] max-w-[50%]' onSubmit={handleSubmit}>
 									<div className='flex flex-col mb-6'>
 										<label className='text-xl font-medium' htmlFor='name'>Name</label>
 										<input value={values.name} onBlur={handleBlur} onChange={handleChange} className='border border-gray-400 bg-transparent my-2 rounded-sm' type='text' name='name' id='name' />
