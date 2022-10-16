@@ -24,7 +24,7 @@ const PostImage: React.FC<PostImageProps> = ({ post, onClick, className, ...rest
 				blurDataURL={image.blurDataURL}
 				alt={post.title}
 				className={`duration-700 ease-in-out hover:scale-110 ${!isLoaded ? 'animate-pulse' : ''}`}
-				onLoad={() => setIsLoaded(true)}
+				onLoadingComplete={() => setIsLoaded(true)}
 				width={image.width}
 				height={image.height}
 				quality={80}
