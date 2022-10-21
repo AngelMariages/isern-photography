@@ -1,5 +1,5 @@
 ---
-title: Foto de PAreja -2
+title: Foto de Pareja -2
 tags:
   - ""
   - amor
