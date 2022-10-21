@@ -5,6 +5,7 @@ sectionOrderList:
   - sectionName: lookBook
   - sectionName: producto
 postOrderList:
+  - postSlug: portada
   - postSlug: test-1
   - postSlug: test-2
   - postSlug: test-3
