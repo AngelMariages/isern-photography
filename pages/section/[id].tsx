@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Header from '../../components/Header';
 import Gallery from '../../components/layout/Gallery';
+import ScrollArrows from '../../components/ScrollArrows';
 import { getAllPosts, getSectionOrder, Post } from '../../lib/api';
 
 const SECTIONS = {
@@ -36,16 +37,18 @@ const Section = ({ allPosts, sectionOrder }: InferGetStaticPropsType<typeof getS
 	const title = `Jordi Isern Photography - ${SECTIONS[id]}`;
 
 	return (
-		<div className='bg-gray-300'>
+		<div className='bg-[#FFFAF7]'>
 			<Head>
 				<title>{title}</title>
 			</Head>
 			<Header variant='light' sectionOrder={sectionOrder} />
 			<div className='mx-4 pt-[8rem]'>
-				<div className='py-4 pl-4 mt-10 mb-12 bg-gray-500 text-xl capitalize font-semibold'>
-					{id}
-				</div>
 				<Gallery allPosts={allPosts} />
+			</div>
+			<div className='justify-center align-middle items-center'>
+				<ScrollArrows toID='' direction='up' color='black' className='mt-16 mb-8'>
+					Back to top
+				</ScrollArrows>
 			</div>
 		</div>
 	);

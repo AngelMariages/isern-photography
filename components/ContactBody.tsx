@@ -17,7 +17,7 @@ const ContactBody: React.FC<{ sectionOrder: string[] }> = ({ children, sectionOr
 			<Head>
 				<title>Jordi Isern Photography - Contact</title>
 			</Head>
-			<Header variant='light' sectionOrder={sectionOrder} />
+			<Header variant='dark' sectionOrder={sectionOrder} />
 			<div className='h-screen text-gray-300'>
 				<div className='absolute h-screen w-full'>
 					<MainImage image={mainImage} />

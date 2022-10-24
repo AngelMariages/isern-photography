@@ -6,13 +6,15 @@ type NavLinkProps = {
 	title: string;
 	className: string;
 	activeClassName: string;
+	inactiveClassName: string;
 };
 
 const NavLink: React.FC<NavLinkProps> = ({
 	href,
 	title,
 	className,
-	activeClassName
+	activeClassName,
+	inactiveClassName,
 }) => {
 	const { asPath } = useRouter();
 
@@ -20,7 +22,7 @@ const NavLink: React.FC<NavLinkProps> = ({
 
 	return (
 		<Link href={href} passHref>
-			<a className={`${className} ${isActive ? activeClassName : ''}`}>{title}</a>
+			<a className={`${isActive ? activeClassName : inactiveClassName} ${className}`}>{title}</a>
 		</Link>
 	);
 };
