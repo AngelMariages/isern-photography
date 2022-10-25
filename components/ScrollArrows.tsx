@@ -1,23 +1,24 @@
 import { useMemo } from 'react';
 
-const ScrollArrow = ({
-	className,
-	direction,
-	color,
-}: {
-	className: string,
+const BORDER_BY_COLOR = {
+	white: 'border-white',
+	black: 'border-black',
+}
+
+const ScrollArrow = ({ className, direction, color, }: {
+	className?: string,
 	direction: 'up' | 'down';
 	color: 'white' | 'black';
 }) => {
 	return (
 		<div className={
-			`w-[32px] h-[32px] border-solid border-${color} -rotate-45 -mb-3 animate-pulseArrow mx-auto `
+			`w-[32px] h-[32px] border-solid ${BORDER_BY_COLOR[color]} -rotate-45 -mb-3 animate-pulseArrow mx-auto `
 			+ `${direction === 'down' ? 'border-b border-l' : 'border-r border-t'} ${className ?? ''}`
 		} />
 	);
 };
 
-const DELAY_ORDER = ['none', '150', '300'];
+const DELAY_ORDER = ['animation-delay-none', 'animation-delay-150', 'animation-delay-300'];
 
 const ScrollArrows: React.FC<{
 	toID: string;
@@ -42,7 +43,7 @@ const ScrollArrows: React.FC<{
 			{delays.map((delay, index) => (
 				<ScrollArrow
 					key={index}
-					className={`animation-delay-${delay}`}
+					className={delay}
 					direction={direction}
 					color={color}
 				/>
