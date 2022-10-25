@@ -31,7 +31,7 @@ const ScrollArrows: React.FC<{
 			return DELAY_ORDER;
 		}
 
-		return DELAY_ORDER.reverse();
+		return [...DELAY_ORDER].reverse();
 	}, [direction])
 
 	return (
