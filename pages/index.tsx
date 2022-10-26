@@ -21,7 +21,7 @@ export const getStaticProps: GetStaticProps<{ allPosts: Post[], mainPost: Post, 
 const Home = ({ mainPost, allPosts, sectionOrder }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   return (
-    <div className='bg-[#2b2b2b]'>
+    <div className='bg-[#2b2b2b] min-h-screen'>
       <Head>
         <title>Jordi Isern Photography</title>
       </Head>
