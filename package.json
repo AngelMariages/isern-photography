@@ -10,9 +10,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/font": "^13.0.0",
     "formik": "^2.2.9",
+    "google": "link:@next/font/google",
     "netlify-cms-app": "^2.15.72",
-    "next": "^12.2.5",
+    "next": "^13.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-flip-toolkit": "^7.0.17",
@@ -31,7 +33,7 @@
     "@types/styled-components": "^5.1.25",
     "autoprefixer": "^10.4.7",
     "eslint": "8.17.0",
-    "eslint-config-next": "12.1.6",
+    "eslint-config-next": "13.0.0",
     "gray-matter": "^4.0.3",
     "postcss": "^8.4.14",
     "sharp": "^0.30.6",

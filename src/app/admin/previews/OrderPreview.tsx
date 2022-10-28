@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
-import { Post } from '../../../lib/api';
+import { Post } from '../../../../lib/api';
 
 type PreviewTemplateComponentProps = import('netlify-cms-core').PreviewTemplateComponentProps;
 

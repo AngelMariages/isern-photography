@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Header from '../../components/Header';
 import Gallery from '../../components/layout/Gallery';
 import ScrollArrows from '../../components/ScrollArrows';
-import { getAllPosts, getSectionOrder, Post } from '../../lib/api';
+import { getAllPosts, getSectionOrder, Post } from '../../../lib/api';
 
 const SECTIONS = {
 	retrato: 'Retrato',

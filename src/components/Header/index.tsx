@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import NavLink from './NavLink';
+import NavLink from '../NavLink';
+import CurrentSectionIndicator from './CurrentSectionIndicator';
 
-const sections = {
+export const sections = {
 	retrato: {
 		name: 'RETRATO',
 		path: '/section/retrato',
@@ -37,14 +37,7 @@ const HeaderItem: React.FC<{ title: string, href: string, variant: 'light' | 'da
 	);
 };
 
-const getHeaderTransform = (index: number) => {
-	return `${(6.3+2.5) * (index - 2)}rem`;
-}
-
 const Header: React.FC<{ variant: 'light' | 'dark', sectionOrder: string[] }> = ({ variant, sectionOrder }) => {
-	const { asPath } = useRouter();
-	const currentIndex = sectionOrder.findIndex((section) => asPath === sections[section as keyof typeof sections].path);
-
 	return (
 		<div className='z-10 absolute w-full'>
 			<div className='relative'>
@@ -84,12 +77,7 @@ const Header: React.FC<{ variant: 'light' | 'dark', sectionOrder: string[] }> = 
 					})}
 					<HeaderItem variant={variant} href='/contact' title="CONTACTO" />
 				</div>
-				<div
-					className={`${currentIndex === -1 ? 'hidden' : ''} mx-auto border border-b border-black w-[6.3rem] transition-transform`}
-					style={{
-						transform: `translate3d(${getHeaderTransform(currentIndex)}, -40px, 0)`,
-					}}
-				/>
+				<CurrentSectionIndicator sectionOrder={sectionOrder}/>
 			</div>
 		</div>
 	)

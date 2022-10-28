@@ -1,5 +1,5 @@
-import Image from 'next/future/image';
-import { PostImage } from '../lib/api'
+import Image from 'next/image';
+import { PostImage } from '../../lib/api'
 
 const MainImage = ({ image }: {
 	image: PostImage

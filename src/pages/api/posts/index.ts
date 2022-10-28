@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getAllPosts } from '../../../lib/api';
+import { getAllPosts } from '../../../../lib/api';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	if (req.headers.referer?.includes('admin')) {

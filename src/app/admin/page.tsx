@@ -1,5 +1,6 @@
+"use client";
 import { useEffect } from 'react';
-import { ApiImageData } from '../api/image';
+import { ApiImageData } from '../../pages/api/image';
 import OrderPreview from './previews/OrderPreview';
 import type { PreviewTemplateComponentProps } from 'netlify-cms-core';
 

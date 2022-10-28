@@ -1,7 +1,7 @@
 import { AuthorizationCode } from "simple-oauth2";
 import { randomBytes } from "crypto";
-import { config } from "../../lib/config";
-import { scopes } from "../../lib/scopes";
+import { config } from "../../../lib/config";
+import { scopes } from "../../../lib/scopes";
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export const randomString = () => randomBytes(4).toString("hex");

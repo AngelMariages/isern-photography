@@ -1,6 +1,6 @@
-import Image from 'next/future/image';
+import Image from 'next/image';
 import { useState } from 'react';
-import { Post } from '../lib/api';
+import { Post } from '../../lib/api';
 
 type PostImageProps = {
 	post: Post;

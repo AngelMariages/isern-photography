@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import '../styles/global.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head';
 import { Flipped, Flipper } from 'react-flip-toolkit';
@@ -10,7 +10,6 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
     <>
       <Head>
         <link rel='canonical' href={canonicalUrl} />
-
       </Head>
       <Flipper flipKey={router.asPath}>
         <Flipped flipId='square'>

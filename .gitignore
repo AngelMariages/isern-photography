@@ -36,3 +36,5 @@ yarn-error.log*
 
 # admin CSS
 public/admin/main.css
+
+.vscode

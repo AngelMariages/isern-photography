@@ -3,13 +3,13 @@ import { Head, Html, Main, NextScript } from 'next/document'
 export default function Document() {
 
 	return (
-		<Html lang='es' className='scroll-smooth'>
+		<Html lang='es' className={`scroll-smooth`}>
 			<Head>
+				<meta name='description' content='Fotógrafo profesional de moda y producto. Basado en Barcelona.' />
 				<link
 					href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500&display=swap"
 					rel="stylesheet"
 				/>
-				<meta name='description' content='Fotógrafo profesional de moda y producto. Basado en Barcelona.' />
 			</Head>
 			<body>
 				<Main />

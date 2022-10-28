@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { PostImage } from '../lib/api';
+import { PostImage } from '../../lib/api';
 import Header from './Header';
 import MainImage from './MainImage';
 

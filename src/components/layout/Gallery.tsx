@@ -1,4 +1,4 @@
-import { Post } from '../../lib/api';
+import { Post } from '../../../lib/api';
 import PostImage from '../PostImage';
 import ImageLightbox from '../ImageLightbox';
 import { useMemo, useState } from 'react';

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 
 type NavLinkProps = {
 	href: string;
@@ -16,13 +16,14 @@ const NavLink: React.FC<NavLinkProps> = ({
 	activeClassName,
 	inactiveClassName,
 }) => {
-	const { asPath } = useRouter();
+	// const pathname = usePathname();
+	const pathname = 'hola';
 
-	const isActive = asPath === href;
+	const isActive = pathname === href;
 
 	return (
-		<Link href={href} passHref>
-			<a className={`${isActive ? activeClassName : inactiveClassName} ${className}`}>{title}</a>
+		<Link href={href} className={`${isActive ? activeClassName : inactiveClassName} ${className}`}>
+			{title}
 		</Link>
 	);
 };
