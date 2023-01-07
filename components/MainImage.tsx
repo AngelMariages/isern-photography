@@ -1,4 +1,4 @@
-import Image from "next/future/image";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { PostImage } from "../lib/api";
 

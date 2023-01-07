@@ -7,11 +7,6 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
-  experimental: {
-    images: {
-      allowFutureImage: true,
-    },
-  },
   headers: () => (
     [
       {

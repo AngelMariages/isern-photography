@@ -21,8 +21,8 @@ const NavLink: React.FC<NavLinkProps> = ({
 	const isActive = asPath === href;
 
 	return (
-		<Link href={href} passHref>
-			<a className={`${isActive ? activeClassName : inactiveClassName} ${className}`}>{title}</a>
+		<Link href={href} passHref className={`${isActive ? activeClassName : inactiveClassName} ${className}`}>
+			{title}
 		</Link>
 	);
 };
