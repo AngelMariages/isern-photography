@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 import { PostImage } from "../lib/api";
 
 const MainImage = ({ image }: { image: PostImage }) => {
@@ -7,7 +7,7 @@ const MainImage = ({ image }: { image: PostImage }) => {
 	const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
 	return (
-		<motion.div style={{ y }}>
+		<m.div style={{ y }}>
 			<Image
 				src={image.src}
 				alt="Main image"
@@ -20,7 +20,7 @@ const MainImage = ({ image }: { image: PostImage }) => {
 				height={image.height}
 				quality={80}
 			/>
-		</motion.div>
+		</m.div>
 	);
 };
 
