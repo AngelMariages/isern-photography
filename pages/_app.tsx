@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { Flipped, Flipper } from "react-flip-toolkit";
-import { Rajdhani } from "@next/font/google";
+import { Rajdhani } from "next/font/google";
 
 const rajdhani = Rajdhani({
 	subsets: ["latin"],
