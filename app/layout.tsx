@@ -1,5 +1,5 @@
 import { Rajdhani } from 'next/font/google';
-import "../styles/globals.css";
+import "./globals.css";
 
 const rajdhani = Rajdhani({
 	subsets: ["latin"],
@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${rajdhani.className}`}>
+    <html lang="en" className={`${rajdhani.className} scroll-smooth`}>
       <body>{children}</body>
     </html>
   )
