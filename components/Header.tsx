@@ -1,5 +1,6 @@
+'use client';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation'
 import NavLink from './NavLink';
 
 const sections = {
@@ -42,7 +43,7 @@ const getHeaderTransform = (index: number) => {
 }
 
 const Header: React.FC<{ variant: 'light' | 'dark', sectionOrder: string[] }> = ({ variant, sectionOrder }) => {
-	const { asPath } = useRouter();
+	const asPath = usePathname();
 	const currentIndex = sectionOrder.findIndex((section) => asPath === sections[section as keyof typeof sections].path);
 
 	return (

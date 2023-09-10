@@ -1,3 +1,4 @@
+'use client';
 import Image from "next/image";
 import { m, useScroll, useTransform } from "framer-motion";
 import { PostImage } from "../lib/api";

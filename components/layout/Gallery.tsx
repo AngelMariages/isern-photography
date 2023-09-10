@@ -1,3 +1,4 @@
+'use client';
 import { Post } from '../../lib/api';
 import PostImage from '../PostImage';
 import ImageLightbox from '../ImageLightbox';
