@@ -23,9 +23,6 @@ dependencies:
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
-  react-flip-toolkit:
-    specifier: ^7.1.0
-    version: 7.1.0(react-dom@18.2.0)(react@18.2.0)
   react-google-recaptcha-v3:
     specifier: ^1.10.1
     version: 1.10.1(react-dom@18.2.0)(react@18.2.0)
@@ -2136,13 +2133,6 @@ packages:
   /flatted@3.2.7:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
     dev: true
-
-  /flip-toolkit@7.1.0:
-    resolution: {integrity: sha512-tvids+uibr8gVFUp1xHMkNSIFvM4++Xr4jAJouUVsId2hv3YvhvC4Ht2FJzdxBZHhI4AeULPFAF6z9fhc20XWQ==}
-    engines: {node: '>=8', npm: '>=5'}
-    dependencies:
-      rematrix: 0.2.2
-    dev: false
 
   /focus-group@0.3.1:
     resolution: {integrity: sha512-IA01dzk2cStQso/qnt2rWhXCFBZlBfjZmohB9mXUx9feEaJcORAK0FQGvwaApsNNGwzEnqrp/2qTR4lq8PXfnQ==}
@@ -4636,19 +4626,6 @@ packages:
     resolution: {integrity: sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==}
     dev: false
 
-  /react-flip-toolkit@7.1.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-KJ2IecKpYOJWgtXY9myyJzzC96FJaE9/8pFSAKgIoG54tiUAZ64ksDpmB+QmMofqFTa06RK7xWb9Rfavf8qz4Q==}
-    engines: {node: '>=8', npm: '>=5'}
-    peerDependencies:
-      react: '>= 16.x'
-      react-dom: '>= 16.x'
-    dependencies:
-      flip-toolkit: 7.1.0
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
-
   /react-frame-component@5.2.6(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-CwkEM5VSt6nFwZ1Op8hi3JB5rPseZlmnp5CGiismVTauE6S4Jsc4TNMlT0O7Cts4WgIC3ZBAQ2p1Mm9XgLbj+w==}
     peerDependencies:
@@ -5228,10 +5205,6 @@ packages:
       stringify-entities: 1.3.2
       unherit: 1.1.3
       xtend: 4.0.2
-    dev: false
-
-  /rematrix@0.2.2:
-    resolution: {integrity: sha512-agFFS3RzrLXJl5LY5xg/xYyXvUuVAnkhgKO7RaO9J1Ssth6yvbO+PIiV67V59MB5NCdAK2flvGvNT4mdKVniFA==}
     dev: false
 
   /repeat-string@1.6.1:
