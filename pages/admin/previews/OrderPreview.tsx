@@ -1,21 +1,12 @@
-import styled from 'styled-components';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { Post } from '../../../lib/api';
 
-type PreviewTemplateComponentProps = import('netlify-cms-core').PreviewTemplateComponentProps;
-
-const PreviewContainer = styled('div')`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+type OrderPreviewProps = import('netlify-cms-core').PreviewTemplateComponentProps;
 
 const Gallery = dynamic(() => import('../../../components/layout/Gallery'), {
 	ssr: false,
 });
-
-type OrderPreviewProps = PreviewTemplateComponentProps;
 
 const OrderPreview: React.FC<OrderPreviewProps> = (props) => {
 	const [postsList, setPostsList] = useState<Post[]>([]);
@@ -45,7 +36,7 @@ const OrderPreview: React.FC<OrderPreviewProps> = (props) => {
 
 
 	return (
-		<PreviewContainer>
+		<div className='flex flex-col items-center'>
 			<div>Main post:</div>
 			{mainPost && <Gallery withGallery={false} allPosts={[mainPost]} />}
 			<div>Gallery:</div>
@@ -53,7 +44,7 @@ const OrderPreview: React.FC<OrderPreviewProps> = (props) => {
 				withGallery={false}
 				allPosts={postsList}
 			/>
-		</PreviewContainer>
+		</div>
 	);
 };
 
