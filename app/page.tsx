@@ -1,6 +1,6 @@
 import Gallery from '../components/layout/Gallery';
 import MainContainer from '../components/MainContainer';
-import MainImage from '../components/MainImage';
+import MainImageWithParallax from '../components/MainImageWithParallax';
 import ScrollArrows from '../components/ScrollArrows';
 import { getAllPosts } from '../lib/api';
 
@@ -27,7 +27,7 @@ export default async function HomePage() {
 
 	return (
 		<MainContainer>
-			<MainImage image={mainPost.image} />
+			<MainImageWithParallax image={mainPost.image} />
 			<ScrollArrows
 				toID="gallery"
 				direction="down"

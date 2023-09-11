@@ -1,11 +1,9 @@
+'use client';
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
-import { getSectionOrder } from '../../lib/api';
 import { Formik } from 'formik';
 import { object, string } from 'yup';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import ContactBody from '../../components/ContactBody';
 
 type FormValues = {
 	name: string;
@@ -16,15 +14,7 @@ type FormValues = {
 
 const toFormData = (o: FormValues) => Object.entries(o).reduce((d, e) => (d.append(...e), d), new FormData());
 
-export const getStaticProps: GetStaticProps<{ sectionOrder: string[] }> = async () => {
-	return {
-		props: {
-			sectionOrder: getSectionOrder()
-		}
-	}
-}
-
-const Contact = ({ sectionOrder }: InferGetStaticPropsType<typeof getStaticProps>) => {
+function Contact() {
 	const { executeRecaptcha } = useGoogleReCaptcha();
 	const router = useRouter();
 
@@ -47,7 +37,7 @@ const Contact = ({ sectionOrder }: InferGetStaticPropsType<typeof getStaticProps
 	};
 
 	return (
-		<ContactBody sectionOrder={sectionOrder}>
+		<>
 			<div className='text-4xl text-medium md:py-18 py-10'>
 				Contact
 			</div>
@@ -115,18 +105,14 @@ const Contact = ({ sectionOrder }: InferGetStaticPropsType<typeof getStaticProps
 					);
 				}}
 			</Formik>
-		</ContactBody>
+		</>
 	)
 };
 
-const ContactWithCaptcha = ({
-	sectionOrder
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+export default function ContactWithCaptcha() {
 	return (
 		<GoogleReCaptchaProvider reCaptchaKey='6LcgkT4iAAAAAEw_C2aUo0x4w8ub9tJtWlJ_52WD'>
-			<Contact sectionOrder={sectionOrder} />
+			<Contact />
 		</GoogleReCaptchaProvider>
 	);
 };
-
-export default ContactWithCaptcha;
