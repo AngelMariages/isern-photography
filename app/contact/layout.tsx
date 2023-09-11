@@ -16,7 +16,7 @@ const mainImage: PostImage = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
-		<MainContainer intent="secondary">
+		<MainContainer intent="primary">
 			<div className="h-screen text-gray-300">
 				<div className="absolute h-screen w-full">
 					<MainImage image={mainImage} />

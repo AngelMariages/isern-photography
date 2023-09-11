@@ -2,8 +2,8 @@
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { Formik } from 'formik';
 import { object, string } from 'yup';
-import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 type FormValues = {
 	name: string;
