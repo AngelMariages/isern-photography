@@ -1,6 +1,6 @@
-'use client';
+"use client";
 import Image from "next/image";
-import { m, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { PostImage } from "../lib/api";
 
 const MainImage = ({ image }: { image: PostImage }) => {
@@ -8,7 +8,7 @@ const MainImage = ({ image }: { image: PostImage }) => {
 	const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
 	return (
-		<m.div style={{ y }}>
+		<motion.div style={{ y }} className="overflow-hidden">
 			<Image
 				src={image.src}
 				alt="Main image"
@@ -21,7 +21,7 @@ const MainImage = ({ image }: { image: PostImage }) => {
 				height={image.height}
 				quality={80}
 			/>
-		</m.div>
+		</motion.div>
 	);
 };
 

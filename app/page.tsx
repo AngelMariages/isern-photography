@@ -1,5 +1,6 @@
 import Header from '../components/Header';
 import Gallery from '../components/layout/Gallery';
+import MainContainer from '../components/MainContainer';
 import MainImage from '../components/MainImage';
 import ScrollArrows from '../components/ScrollArrows';
 import { getAllPosts, getSectionOrder } from '../lib/api';
@@ -27,7 +28,7 @@ export default async function HomePage() {
 	const sectionOrder = getSectionOrder();
 
 	return (
-		<div className="bg-[#2b2b2b] min-h-screen">
+		<MainContainer>
 			<Header variant="dark" sectionOrder={sectionOrder} />
 			<MainImage image={mainPost.image} />
 			<ScrollArrows
@@ -37,6 +38,6 @@ export default async function HomePage() {
 			/>
 			<Gallery id="gallery" allPosts={allPosts.slice(1)} />
 			<ScrollArrows toID="" direction="up" className="mt-16 pb-8" />
-		</div>
+		</MainContainer>
 	);
 }

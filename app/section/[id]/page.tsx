@@ -36,7 +36,7 @@ export default async function SectionPage({
 	const sectionOrder = getSectionOrder();
 
 	return (
-		<div className="bg-[#FFFAF7]">
+		<>
 			<Header variant="light" sectionOrder={sectionOrder} />
 			<div className="mx-4 pt-[8rem]">
 				<Gallery allPosts={allPosts} />
@@ -51,6 +51,6 @@ export default async function SectionPage({
 					Back to top
 				</ScrollArrows>
 			</div>
-		</div>
+		</>
 	);
 }

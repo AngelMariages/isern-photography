@@ -12,10 +12,8 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" className={`${rajdhani.className} scroll-smooth`}>
-			<body>
-				{children}
-			</body>
+		<html lang="en" className={`${rajdhani.className} scroll-smooth min-h-screen`}>
+			<body>{children}</body>
 		</html>
 	);
 }

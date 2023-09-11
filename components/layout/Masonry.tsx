@@ -17,7 +17,7 @@ const getColumns = (containerWidth: number) => {
 	);
 };
 
-export default function Masonry({ children }: PropsWithChildren<{}>) {
+export default function Masonry({ children, className }: PropsWithChildren<{ className: string }>) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [columns, setColumns] = useState(4);
 	const lastRecalculation = useRef<number | null>(null);
@@ -78,7 +78,7 @@ export default function Masonry({ children }: PropsWithChildren<{}>) {
 	const columnWidth = useMemo(() => `${100 / columns}%`, [columns]);
 
 	return (
-		<div ref={containerRef}>
+		<div ref={containerRef} className={className}>
 			{childrenInColumns.map((column, i) => {
 				return (
 					<div key={i} style={{ width: columnWidth }}>
