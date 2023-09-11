@@ -1,8 +1,8 @@
 ---
 sectionOrderList:
   - sectionName: retrato
-  - sectionName: fotosFamilia
-  - sectionName: lookBook
+  - sectionName: fotos-familia
+  - sectionName: look-book
   - sectionName: producto
 postOrderList:
   - postSlug: portada

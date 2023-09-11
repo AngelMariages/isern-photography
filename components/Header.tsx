@@ -12,13 +12,13 @@ const sections = {
 		name: "PRODUCTO",
 		path: "/section/producto",
 	},
-	lookBook: {
+	'look-book': {
 		name: "LOOK-BOOK",
-		path: "/section/lookBook",
+		path: "/section/look-book",
 	},
-	fotosFamilia: {
+	'fotos-familia': {
 		name: "FOTOS FAMILIA",
-		path: "/section/fotosFamilia",
+		path: "/section/fotos-familia",
 	},
 };
 

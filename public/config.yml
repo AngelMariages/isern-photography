@@ -23,7 +23,7 @@ collections:
               widget: "select"
               min: 1
               max: 1
-              options: ["retrato", "producto", "lookBook", "fotosFamilia"]
+              options: ["retrato", "producto", "look-book", "fotos-familia"]
         - label: Posts order
           widget: list
           name: postOrderList
