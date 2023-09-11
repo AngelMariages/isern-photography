@@ -1,9 +1,8 @@
-import Header from '../components/Header';
 import Gallery from '../components/layout/Gallery';
 import MainContainer from '../components/MainContainer';
 import MainImage from '../components/MainImage';
 import ScrollArrows from '../components/ScrollArrows';
-import { getAllPosts, getSectionOrder } from '../lib/api';
+import { getAllPosts } from '../lib/api';
 
 export const metadata = {
 	title: "Jordi Isern photography",
@@ -25,11 +24,9 @@ export const metadata = {
 export default async function HomePage() {
 	const allPosts = getAllPosts();
 	const mainPost = allPosts[0];
-	const sectionOrder = getSectionOrder();
 
 	return (
 		<MainContainer>
-			<Header variant="dark" sectionOrder={sectionOrder} />
 			<MainImage image={mainPost.image} />
 			<ScrollArrows
 				toID="gallery"

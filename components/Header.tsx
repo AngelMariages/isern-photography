@@ -42,8 +42,9 @@ const getHeaderTransform = (index: number) => {
 	return `${(6.3+2.5) * (index - 2)}rem`;
 }
 
-const Header: React.FC<{ variant: 'light' | 'dark', sectionOrder: string[] }> = ({ variant, sectionOrder }) => {
+export default function Header({ sectionOrder }: { sectionOrder: string[] }){
 	const asPath = usePathname();
+	const variant = asPath === '/' ? 'dark' : 'light';
 	const currentIndex = sectionOrder.findIndex((section) => asPath === sections[section as keyof typeof sections].path);
 
 	return (
@@ -95,5 +96,3 @@ const Header: React.FC<{ variant: 'light' | 'dark', sectionOrder: string[] }> = 
 		</div>
 	)
 };
-
-export default Header;

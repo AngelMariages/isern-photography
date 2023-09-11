@@ -1,4 +1,6 @@
 import { Rajdhani } from "next/font/google";
+import Header from "../components/Header";
+import { getSectionOrder } from '../lib/api';
 import "./globals.css";
 
 const rajdhani = Rajdhani({
@@ -11,9 +13,17 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
+	const sectionOrder = getSectionOrder();
+
 	return (
-		<html lang="en" className={`${rajdhani.className} scroll-smooth min-h-screen`}>
-			<body>{children}</body>
+		<html
+			lang="en"
+			className={`${rajdhani.className} scroll-smooth min-h-screen`}
+		>
+			<body>
+				<Header sectionOrder={sectionOrder} />
+				{children}
+			</body>
 		</html>
 	);
 }

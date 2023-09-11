@@ -1,7 +1,6 @@
-import Header from "../../../components/Header";
 import Gallery from "../../../components/layout/Gallery";
 import ScrollArrows from "../../../components/ScrollArrows";
-import { getAllPosts, getSectionOrder } from "../../../lib/api";
+import { getAllPosts } from "../../../lib/api";
 
 const SECTIONS = {
 	retrato: "Retrato",
@@ -33,11 +32,9 @@ export default async function SectionPage({
 }) {
 	const { id } = params;
 	const allPosts = getAllPosts(id);
-	const sectionOrder = getSectionOrder();
 
 	return (
 		<>
-			<Header variant="light" sectionOrder={sectionOrder} />
 			<div className="mx-4 pt-[8rem]">
 				<Gallery allPosts={allPosts} />
 			</div>
