@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npm run build:css",
+    "build": "next build && bun run build:css",
     "build:css": "tailwind build -i app/globals.css -o public/admin/main.css",
     "start": "next start",
     "lint": "next lint"
@@ -13,6 +13,7 @@
     "class-variance-authority": "^0.7.0",
     "formik": "^2.4.4",
     "framer-motion": "^8.5.5",
+    "million": "latest",
     "netlify-cms-app": "^2.15.72",
     "next": "^13.4.19",
     "react": "^18.2.0",
