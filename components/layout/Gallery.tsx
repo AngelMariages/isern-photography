@@ -1,18 +1,31 @@
-'use client';
-import { Post } from '../../lib/api';
-import PostImage from '../PostImage';
-import ImageLightbox from '../ImageLightbox';
-import { useMemo, useState } from 'react';
-import Masonry from './Masonry';
+"use client";
+import { Post } from "../../lib/api";
+import PostImage from "../PostImage";
+import ImageLightbox from "../ImageLightbox";
+import { useMemo, useState } from "react";
+import Masonry from "./Masonry";
 
-const Gallery = ({ allPosts, withGallery = true, id }: {
-	allPosts: Post[],
-	withGallery?: boolean,
-	id?: string
-}) => {
+type GalleryProps = {
+	allPosts: Post[];
+	withGallery?: boolean;
+	id?: string;
+};
+
+export default function Gallery({
+	allPosts,
+	withGallery = true,
+	id,
+}: GalleryProps) {
 	const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState(0);
-	const images = useMemo(() => allPosts.map(post => ({ src: post.image.src, preview: post.image.blurDataURL })), [allPosts]);
+	const images = useMemo(
+		() =>
+			allPosts.map((post) => ({
+				src: post.image.src,
+				preview: post.image.blurDataURL,
+			})),
+		[allPosts]
+	);
 
 	return (
 		<div id={id}>
@@ -40,5 +53,3 @@ const Gallery = ({ allPosts, withGallery = true, id }: {
 		</div>
 	);
 }
-
-export default Gallery;

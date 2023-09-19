@@ -1,6 +1,6 @@
-import MainContainer from "../../components/MainContainer";
-import MainImage from "../../components/MainImage";
-import { PostImage } from "../../lib/api";
+import MainContainer from "../../../components/MainContainer";
+import MainImage from "../../../components/MainImage";
+import { PostImage } from "../../../lib/api";
 
 export const metadata = {
 	title: "Jordi Isern photography - Contact",

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { PropsWithChildren, useMemo } from 'react';
 
 const BORDER_BY_COLOR = {
 	white: 'border-white',
@@ -20,12 +20,12 @@ const ScrollArrow = ({ className, direction, color, }: {
 
 const DELAY_ORDER = ['animation-delay-none', 'animation-delay-150', 'animation-delay-300'];
 
-const ScrollArrows: React.FC<{
+const ScrollArrows = ({ toID, direction, className, children, color = 'white' }: PropsWithChildren<{
 	toID: string;
 	direction: 'up' | 'down';
 	color?: 'white' | 'black';
 	className?: string;
-}> = ({ toID, direction, className, children, color = 'white' }) => {
+}>) => {
 	const delays = useMemo(() => {
 		if (direction === 'down') {
 			return DELAY_ORDER;

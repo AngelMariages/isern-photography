@@ -1,8 +1,8 @@
-import Gallery from '../components/layout/Gallery';
-import MainContainer from '../components/MainContainer';
-import MainImageWithParallax from '../components/MainImageWithParallax';
-import ScrollArrows from '../components/ScrollArrows';
-import { getAllPosts } from '../lib/api';
+import Gallery from '../../components/layout/Gallery';
+import MainContainer from '../../components/MainContainer';
+import MainImageWithParallax from '../../components/MainImageWithParallax';
+import ScrollArrows from '../../components/ScrollArrows';
+import { getAllPosts } from '../../lib/api';
 
 export const metadata = {
 	title: "Jordi Isern photography",

@@ -1,25 +1,20 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { headers } from 'next/headers';
+import { NextRequest, NextResponse } from 'next/server';
 import { AuthorizationCode, AuthorizationTokenConfig } from "simple-oauth2";
-import { config } from "../../lib/config";
+import { config } from "../../../lib/config";
 
-const callback = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
-	const { host } = req.headers;
-	const url = new URL(`https://${host}/${req.url}`);
-	const urlParams = url.searchParams;
-	const code = urlParams.get("code");
-	const provider = urlParams.get("provider");
+export async function GET(request: NextRequest) {
+	const host = headers().get("host");
+	const code = request.nextUrl.searchParams.get("code");
+	const provider = request.nextUrl.searchParams.get("provider");
 
 	// Only supported provider is Github
 	if (!provider || provider !== 'github') {
-		return res.status(400).json({
-			error: "Missing provider"
-		});
+		return NextResponse.json({ message: "Missin provider" }, { status: 400 });
 	}
 
 	if (!code) {
-		return res.status(400).json({
-			error: "Missing code"
-		});
+		return NextResponse.json({ message: "Missing code" }, { status: 400 });
 	}
 
 	// we recreate the client we used to make the request
@@ -37,9 +32,7 @@ const callback = async (req: NextApiRequest, res: NextApiResponse): Promise<void
 		const token: string = accessToken.token.access_token;
 
 		if (!token) {
-			return res.status(400).json({
-				error: "Missing token"
-			});
+			return NextResponse.json({ message: "Missing token" }, { status: 400 });
 		}
 
 		const responseBody = renderBody("success", {
@@ -47,11 +40,13 @@ const callback = async (req: NextApiRequest, res: NextApiResponse): Promise<void
 			provider
 		});
 
-		res.statusCode = 200;
-		res.end(responseBody);
+		return new NextResponse(responseBody, {
+			headers: {
+				"content-type": "text/html",
+			},
+		});
 	} catch (error) {
-		res.statusCode = 500;
-		res.end(JSON.stringify({ error }));
+		return NextResponse.json({ message: "Error", error }, { status: 500 });
 	}
 };
 
@@ -74,5 +69,3 @@ const renderBody = (status: string, content: { token: string | undefined, provid
     </script>
   `;
 };
-
-export default callback;

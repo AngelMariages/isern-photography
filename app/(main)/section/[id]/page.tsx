@@ -1,6 +1,6 @@
-import Gallery from "../../../components/layout/Gallery";
-import ScrollArrows from "../../../components/ScrollArrows";
-import { getAllPosts } from "../../../lib/api";
+import Gallery from "../../../../components/layout/Gallery";
+import ScrollArrows from "../../../../components/ScrollArrows";
+import { getAllPosts } from "../../../../lib/api";
 
 const SECTIONS = {
 	retrato: "Retrato",

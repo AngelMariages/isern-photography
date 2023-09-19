@@ -1,7 +1,7 @@
 import { Rajdhani } from "next/font/google";
-import Header from "../components/Header";
-import { getSectionOrder } from '../lib/api';
-import "./globals.css";
+import Header from "../../components/Header";
+import { getSectionOrder } from '../../lib/api';
+import "../globals.css";
 
 const rajdhani = Rajdhani({
 	subsets: ["latin"],

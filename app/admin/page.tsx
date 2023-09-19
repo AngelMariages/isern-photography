@@ -1,5 +1,6 @@
+'use client';
 import { useEffect } from 'react';
-import { ApiImageData } from '../api/image';
+import { ApiImageData } from '../api/image/route';
 import OrderPreview from './previews/OrderPreview';
 import type { PreviewTemplateComponentProps } from 'netlify-cms-core';
 
@@ -66,7 +67,7 @@ async function preSaveHandler({ entry }: PreSaveProps) {
 		);
 }
 
-const AdminPage = () => {
+export default function AdminPage() {
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
 			(async () => {
@@ -87,5 +88,3 @@ const AdminPage = () => {
 
 	return <div></div>;
 };
-
-export default AdminPage;
