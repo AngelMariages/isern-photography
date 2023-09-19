@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "cd node_modules/sharp && bun install && cd ../..",
     "dev": "next dev",
     "build": "next build && bun run build:css",
     "build:css": "tailwind build -i app/globals.css -o public/admin/main.css",
